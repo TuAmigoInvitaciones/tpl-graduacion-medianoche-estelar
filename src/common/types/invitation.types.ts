@@ -2,6 +2,12 @@ import type { ButtonVariant } from './button.types'
 import type { MenuVariant } from './menu.types'
 import type { MusicPlayerVariant } from './music-player.types'
 
+export interface EnvelopeConfig {
+    showEnvelope?: boolean
+    type?: 'cerrado-abierto' | 'video-apertura' | 'animacion-apertura'
+    [key: string]: unknown
+}
+
 export interface ThemeConfig {
     fontPack: number
     palette: number
@@ -35,6 +41,8 @@ export interface LocationItem {
 }
 
 export interface SectionsConfig {
+    envelope?: EnvelopeConfig
+    envelop?: EnvelopeConfig
     hero?: SectionItemConfig & { showHero?: boolean; names?: string; subtitle?: string; date?: string }
     countdown?: SectionItemConfig & { showCountdown?: boolean; targetDate?: string }
     places?: SectionItemConfig & { showPlaces?: boolean; locations?: LocationItem[] }

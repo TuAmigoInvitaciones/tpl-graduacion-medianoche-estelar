@@ -25,9 +25,10 @@
 @use '../../modules/invitation/rsvp/rsvp';
 @use '../../modules/invitation/places/places';
 @use '../../modules/invitation/graduates/graduates';
-@use '../../modules/invitation/itinerary/itinerary';
 @use '../../modules/invitation/dress-code/dress-code';
-@use '../../modules/invitation/reminders/reminders';
+@use '../../modules/invitation/itinerary/itinerary';
+@use '../../modules/invitation/guest-photos/guest-photos';
+@use '../../modules/invitation/details/details';
 @use '../../modules/invitation/farewell/farewell';
 
 // Invitation Envelop

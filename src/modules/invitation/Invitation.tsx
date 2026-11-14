@@ -9,8 +9,9 @@ import { MessageSection } from './message/Message'
 import { PlacesSection } from './places/PlacesSection'
 import { RsvpSection } from './rsvp/RsvpSection'
 import { GraduatesSection } from './graduates/GraduatesSection'
-import { RemindersSection } from './reminders/RemindersSection'
+import { DetailsSection } from './details/DetailsSection'
 import { FarewellSection } from './farewell/FarewellSection'
+import { GuestPhotosSection } from './guest-photos/GuestPhotosSection'
 
 export const Invitation: React.FC = () => {
     const { activeVariant, isMenuVisible } = useMenu()
@@ -28,7 +29,8 @@ export const Invitation: React.FC = () => {
             <GraduatesSection />
             <DressCodeSection />
             <ItinerarySection />
-            <RemindersSection />
+            <GuestPhotosSection />
+            <DetailsSection />
             <FarewellSection />
         </main>
     )

@@ -1,7 +1,7 @@
 @use '../../../common/styles/variables' as vars;
 @use '../../../common/styles/mixins' as mix;
 
-.reminder-section {
+.details-section {
     padding: 8rem 0 0;
     width: 100%;
     display: flex;
@@ -19,12 +19,12 @@
     }
 }
 
-.reminder-hero {
+.details-hero {
     width: 100%;
     margin-bottom: 1.5rem;
 }
 
-.reminder-illustration__wrapper {
+.details-illustration__wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -33,14 +33,14 @@
     pointer-events: none;
 }
 
-.reminder-illustration {
+.details-illustration {
     width: min(55%, 380px);
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06));
 }
 
-.reminder-cards-container {
+.details-cards-container {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@
     z-index: 1;
 }
 
-.reminder-card {
+.details-card {
     background-color: #ffffff;
     box-shadow: 0 12px 38px rgba(vars.$color-primary-900, 0.06);
     border: 1px solid rgba(vars.$color-primary-200, 0.55);
@@ -73,7 +73,7 @@
     }
 }
 
-.reminder-tendido-full {
+.details-tendido-full {
     width: 100%;
     margin-top: -2rem;
     margin-bottom: 1rem;
@@ -92,7 +92,7 @@
     }
 }
 
-.reminder-item {
+.details-item {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -136,14 +136,14 @@
     }
 }
 
-.reminder-divider {
+.details-divider {
     width: 100%;
     height: 1px;
     background-color: rgba(vars.$color-primary-100, 0.7);
     margin: 0.2rem 0;
 }
 
-.reminder-card-footer-icon {
+.details-card-footer-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -161,7 +161,7 @@
     }
 }
 
-.reminder-hashtag-card {
+.details-hashtag-card {
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -179,7 +179,7 @@
     }
 }
 
-.reminder-hashtag-inner {
+.details-hashtag-inner {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -210,7 +210,7 @@
     }
 }
 
-.reminder-hashtag-tag {
+.details-hashtag-tag {
     font-family: vars.$font-serif;
     font-size: 1.5rem;
     font-weight: 500;
