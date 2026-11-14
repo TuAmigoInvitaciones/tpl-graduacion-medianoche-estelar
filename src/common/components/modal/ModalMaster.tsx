@@ -2,7 +2,7 @@ import React from 'react'
 
 import { useModal } from '@/common/hooks'
 import { MODAL_NAMES } from '@/store/ui/modal.slice'
-import { SearchModal } from '@/modules/search/components/search-modal/SearchModal'
+import { SearchModal } from '@/modules/search/components/SearchModal'
 import { TicketModal } from '@/modules/ticket/components/TicketModal'
 import { TicketTablesModal } from '@/modules/ticket/components/TicketTablesModal'
 
