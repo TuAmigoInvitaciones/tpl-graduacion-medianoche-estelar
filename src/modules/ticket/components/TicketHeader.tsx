@@ -7,40 +7,42 @@ export const TicketHeader: React.FC = () => {
     const heroConfig = sections.hero
     const placesConfig = sections.places
 
-    const eventSubtitle = 'Nuestra Graduación'
-    const coupleNames = heroConfig?.names ?? 'CEB 6/1'
-    const eventDate = heroConfig?.date ? `${heroConfig.date} — 21:00 HRS` : '7 DE AGOSTO DE 2026 — 21:00 HRS'
+    const title = heroConfig?.names || heroConfig?.title || ''
+    const subtitle = heroConfig?.subtitle || ''
+    const date = heroConfig?.date ? `${heroConfig.date}` : ''
 
-    const receptionLocation = placesConfig?.locations?.find(
-        loc => loc.title?.toLowerCase().includes('recepción') || loc.title?.toLowerCase().includes('fiesta')
-    )
-    const placeTitle = receptionLocation?.title ?? 'Salón Hopaliz'
-    const placeAddress = receptionLocation?.location ?? 'Blvd. San Marcos #109 Capital City, 20207 Aguascalientes, Ags.'
+    const mainLocation = placesConfig?.locations?.[1]
+    const placeTitle = mainLocation?.title || ''
+    const placeAddress = mainLocation?.location || ''
 
     return (
         <header className="ticket__header">
             <div className="ticket__event-title">
-                <span className="ticket__event-subtitle">{eventSubtitle}</span>
-                <h2 className="ticket__couple-names">{coupleNames}</h2>
+                {subtitle && <span className="ticket__event-subtitle">{subtitle}</span>}
+                {title && <h2 className="ticket__couple-names">{title}</h2>}
             </div>
 
             <div className="ticket__event-details">
-                <div className="ticket__detail-item">
-                    <CalendarBlankIcon className="ticket__detail-icon" size={24} weight="thin" />
-                    <div className="ticket__detail-text">
-                        <span className="ticket__detail-label">Fecha</span>
-                        <span className="ticket__detail-value">{eventDate}</span>
+                {date && (
+                    <div className="ticket__detail-item">
+                        <CalendarBlankIcon className="ticket__detail-icon" size={24} weight="thin" />
+                        <div className="ticket__detail-text">
+                            <span className="ticket__detail-label">Fecha</span>
+                            <span className="ticket__detail-value">{date}</span>
+                        </div>
                     </div>
-                </div>
+                )}
 
-                <div className="ticket__detail-item">
-                    <MapPinIcon className="ticket__detail-icon" size={24} weight="thin" />
-                    <div className="ticket__detail-text">
-                        <span className="ticket__detail-label">Recepción</span>
-                        <span className="ticket__detail-value">{placeTitle}</span>
-                        <span className="ticket__detail-subvalue">{placeAddress}</span>
+                {(placeTitle || placeAddress) && (
+                    <div className="ticket__detail-item">
+                        <MapPinIcon className="ticket__detail-icon" size={24} weight="thin" />
+                        <div className="ticket__detail-text">
+                            <span className="ticket__detail-label">Lugar</span>
+                            {placeTitle && <span className="ticket__detail-value">{placeTitle}</span>}
+                            {placeAddress && <span className="ticket__detail-subvalue">{placeAddress}</span>}
+                        </div>
                     </div>
-                </div>
+                )}
             </div>
         </header>
     )

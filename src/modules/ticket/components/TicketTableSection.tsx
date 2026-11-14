@@ -11,7 +11,7 @@ interface Props {
 
 export const TicketTableSection: React.FC<Props> = ({ ticket }) => {
     const { onOpenModal } = useModal()
-    const tableInfo = ticket?.table || 'Mesa 12'
+    const tableInfo = ticket?.table || 'Mesa 1'
 
     return (
         <div className="ticket__table-section">
