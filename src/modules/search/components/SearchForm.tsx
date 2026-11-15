@@ -15,7 +15,7 @@ export const SearchForm: React.FC = () => {
     })
 
     return (
-        <form onSubmit={handleSubmit((data) => onGetTicket(data.keyPass))} className="search-form">
+        <form onSubmit={handleSubmit((data) => onGetTicket(data.keyPass.trim()))} className="search-form">
             <div className="search-form__field">
                 <label htmlFor="keyPass" className="search-form__label">
                     Ingresa tu clave de acceso

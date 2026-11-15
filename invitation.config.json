@@ -1,20 +1,31 @@
 {
+  "metaTitle": "Medianoche Estelar | Graduación",
+  "templateName": "graduacion-medianoche-estelar",
+  "eventType": "graduacion",
+  "packageTier": "oro",
+  "commercial": {
+    "packageName": "Oro VIP Premium (Sin Fotos)",
+    "basePrice": 1099.99,
+    "ticketPrice": 0,
+    "addonsPrice": 0,
+    "totalPrice": 1099.99
+  },
   "theme": {
     "fontPack": 4,
-    "palette": 9,
-    "buttonVariant": "primary",
+    "palette": 9
+  },
+  "ui": {
     "menu": {
-      "show": true,
-      "variant": "floating",
+      "showMenu": true,
+      "variant": "bar",
       "title": "CEB 6/1",
       "buttonVariant": "icon"
     },
     "music": {
-      "show": true,
+      "showMusic": true,
       "variant": "floating",
-      "buttonVariant": "primary",
-      "songTitle": "Música de fondo",
-      "artistName": "Música del evento"
+      "title": "Música de Fondo",
+      "buttonVariant": "primary"
     }
   },
   "config": {
@@ -24,12 +35,16 @@
     "hasMenu": true
   },
   "sections": {
+    "envelope": {
+      "showEnvelope": true,
+      "type": "video-apertura"
+    },
     "hero": {
       "showHero": true,
       "names": "CEB 6/1",
       "subtitle": "Nos complace invitarte a celebrar el día más importante de nuestras vidas",
       "date": "7 DE JUNIO DE 2027",
-      "bgImage": ""
+      "city": "Aguascalientes, México"
     },
     "message": {
       "showMessage": true,
@@ -39,19 +54,27 @@
       "showCountdown": true,
       "targetDate": "2026-08-07T19:00:00"
     },
+    "family": {
+      "showFamily": false,
+      "title": null,
+      "parents": [],
+      "godparents": []
+    },
     "places": {
       "showPlaces": true,
       "locations": [
         {
           "title": "Ceremonia Religiosa",
-          "location": "Santuario de Nuestra Sra. de Guadalupe. C. Guadalupe 213, Barrio de Guadalupe, 20059 Aguascalientes, Ags.",
+          "venue": "Santuario de Nuestra Sra. de Guadalupe",
+          "location": "C. Guadalupe 213, Barrio de Guadalupe, 20059 Aguascalientes, Ags.",
           "time": "19:00 HRS",
           "date": "2026-08-07",
           "url": "https://maps.app.goo.gl/D2UKsaMMJWTN5UcE9"
         },
         {
           "title": "Recepción & Fiesta",
-          "location": "Salón Hopaliz. Blvd. San Marcos #109 Capital City, 20207 Aguascalientes, Ags.",
+          "venue": "Salón Hopaliz",
+          "location": "Blvd. San Marcos #109 Capital City, 20207 Aguascalientes, Ags.",
           "time": "21:00 HRS",
           "date": "2026-08-07",
           "url": "https://maps.app.goo.gl/Ej4U4gfopJPWMNuw5"
@@ -114,18 +137,88 @@
         ]
       }
     },
-    "gallery": {
-      "showGallery": true,
-      "title": "Galería de Fotos",
-      "images": []
+    "details": {
+      "showDetails": true,
+      "title": "Detalles Importantes",
+      "noKids": true,
+      "noKidsMessage": "Aunque amamos a los pequeños, la recepción es solo para adultos.",
+      "punctuality": true,
+      "punctualityMessage": "Te pedimos ser puntual para no perderte ningún momento especial de la celebración.",
+      "hashtag": "#CEB61"
     },
     "presents": {
-      "showPresents": true,
-      "title": "Mesa de Regalos Liverpool",
-      "url": "https://mesaderegalos.liverpool.com.mx"
+      "showPresents": false,
+      "title": null,
+      "url": null,
+      "bankDetails": {
+        "bank": null,
+        "holder": null,
+        "clabe": null,
+        "account": null
+      },
+      "envelopeRain": null
     },
     "confirmation": {
-      "showConfirmation": true
+      "showConfirmation": false,
+      "type": null,
+      "isQuantityFree": null,
+      "whatsappPhone": null,
+      "whatsappMessage": null
+    },
+    "graduates": {
+      "showGraduates": true
+    },
+    "gallery": {
+      "showGallery": false,
+      "title": null,
+      "variant": null,
+      "maxPhotos": null
+    },
+    "guestPhotos": {
+      "showGuestPhotos": true,
+      "title": "Fotos de los Invitados",
+      "subtitle": "Comparte tus recuerdos y momentos de la fiesta con nosotros",
+      "albumUrl": "https://photos.app.goo.gl/xqUqNJ5Cvm9mjo7m8"
+    },
+    "farewell": {
+      "showFarewell": true,
+      "hashtag": "#CEB61",
+      "thankYouMessage": "Gracias por acompañarnos en este momento tan especial y celebrar juntos el gran logro que significa este paso en nuestras vidas."
+    },
+    "ticket": {
+      "showTicket": true
+    },
+    "addons": {
+      "lodgingAndWeather": {
+        "showLodging": false,
+        "title": "Hospedaje & Clima",
+        "hotels": [],
+        "weatherCity": "Aguascalientes"
+      },
+      "ourStory": {
+        "showOurStory": false,
+        "title": "Nuestra Historia",
+        "quoteOrPoem": "Por encima de todo, vístanse de amor.",
+        "timeline": []
+      },
+      "faqAndMenu": {
+        "showFaqAndMenu": false,
+        "title": "Preguntas Frecuentes & Menú",
+        "faqs": [],
+        "menuCourses": []
+      },
+      "playlistAndPhotos": {
+        "showPlaylistAndPhotos": true,
+        "title": "Música & Fotos de Invitados",
+        "qrAlbumUrl": "https://photos.app.goo.gl/xqUqNJ5Cvm9mjo7m8"
+      },
+      "monogram": {
+        "showMonogram": true,
+        "title": "Monograma del Evento"
+      },
+      "scratchReveal": {
+        "showScratchReveal": true
+      }
     }
   }
 }

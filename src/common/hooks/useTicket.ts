@@ -1,54 +1,47 @@
+import type { AppDispatch, RootState } from "@/store/store"
 import { useDispatch, useSelector } from "react-redux"
-import { useCallback, useRef } from "react";
-
-import type { AppDispatch, RootState } from "@/store/store";
-import { setIsChecking, setTicket } from "@/store/ticket/ticket.slice";
-import { closeMenu } from "@/store/ui/menu.slice";
-import { closeModal } from "@/store/ui/modal.slice";
-import { startGettingTicket } from "@/store/ticket/ticket.thunk";
+import { useInvitationConfig } from "./useInvitationConfig"
+import { useCallback } from "react"
+import { startCheckingTicket, startGettingTicket } from "@/store/ticket/ticket.thunk"
+import { TicketHelpers } from "../utils/ticket.helpers"
+import { clearTicketState } from "@/store/ticket/ticket.slice"
+import { closeMenu } from "@/store/ui/menu.slice"
+import { closeModal } from "@/store/ui/modal.slice"
 
 export const useTicket = () => {
 
-    const dispatch = useDispatch<AppDispatch>();
-    const { error, isLoading, isChecking, ticket } = useSelector((state: RootState) => state.ticket)
-    const initialTicketRef = useRef(ticket)
+    const { templateName } = useInvitationConfig()
 
-    const onGetTicket = useCallback(async (keyPass: string) => {
-        return await dispatch(startGettingTicket(keyPass))
-    }, [dispatch])
+    const dispatch = useDispatch<AppDispatch>()
+    const { ticket, isLoading, isChecking, error } = useSelector((state: RootState) => state.ticket)
+
+    const onGetTicket = useCallback((keyPass: string): Promise<boolean> => {
+        return dispatch(startGettingTicket(keyPass, templateName))
+    }, [dispatch, templateName])
+
+    const onRefreshTicket = useCallback((keyPass: string): Promise<boolean> => {
+        return dispatch(startGettingTicket(keyPass, templateName, { silent: true }))
+    }, [dispatch, templateName])
 
     const onRemoveTicket = useCallback(() => {
-        localStorage.removeItem('abrasa-ticket')
-        dispatch(setTicket(null))
+        TicketHelpers.clearStoredTicket(templateName)
+        dispatch(clearTicketState())
         dispatch(closeMenu())
         dispatch(closeModal())
-    }, [dispatch])
+    }, [dispatch, templateName])
 
     const onCheckInitialData = useCallback(() => {
-        const ticketStr = localStorage.getItem('abrasa-ticket')
-        if (ticketStr) {
-            try {
-                const parsedTicket = JSON.parse(ticketStr)
-                dispatch(setTicket(parsedTicket))
-            } catch {
-                dispatch(setTicket(null))
-            }
-        } else if (initialTicketRef.current && (initialTicketRef.current.id || initialTicketRef.current.keyPass || initialTicketRef.current.name)) {
-            localStorage.setItem('abrasa-ticket', JSON.stringify(initialTicketRef.current))
-            dispatch(setTicket(initialTicketRef.current))
-        } else {
-            dispatch(setTicket(null))
-        }
-        dispatch(setIsChecking(false))
-    }, [dispatch])
+        dispatch(startCheckingTicket(templateName))
+    }, [dispatch, templateName])
 
     return {
+        ticket,
         error,
         isLoading,
         isChecking,
-        ticket,
 
         onGetTicket,
+        onRefreshTicket,
         onRemoveTicket,
         onCheckInitialData
     }

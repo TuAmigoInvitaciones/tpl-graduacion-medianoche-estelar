@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useNavigate } from 'react-router-dom'
-import { useTicket, useInvitationConfig } from '@/common/hooks'
+import { useTicket, useInvitationConfig, useNavigation } from '@/common/hooks'
+import { APP_ROUTES } from '@/router/routes'
 import { LinkIcon } from '@phosphor-icons/react'
 import bg from '@/assets/images/backgrounds/rsvp.jpeg'
 import sello from '@/assets/images/icons/sello.webp'
@@ -9,12 +9,13 @@ import sello from '@/assets/images/icons/sello.webp'
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 export const RsvpSection: React.FC = () => {
-    const navigate = useNavigate()
+    const { goTo } = useNavigation()
     const { ticket } = useTicket()
-    const { sections } = useInvitationConfig()
+    const { config, sections } = useInvitationConfig()
 
-    const guestName = ticket?.name || 'Invitado Especial'
-    const eventDate = sections.hero?.date || '7 DE AGOSTO DE 2026'
+    const canViewTicket = Boolean(config.hasTicketingSystem && ticket)
+    const guestName = ticket?.name || 'Invitado por asignar'
+    const eventDate = sections.hero?.date || 'Fecha por asignar'
 
     return (
         <section id="rsvp" className="rsvp">
@@ -81,29 +82,31 @@ export const RsvpSection: React.FC = () => {
                         AGUASCALIENTES, AGS.
                     </motion.p>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: '-10% 0px' }}
-                        transition={{ duration: 0.9, delay: 1.0, ease: FLUID_EASE }}
-                        className="rsvp__ticket-btn-wrapper"
-                    >
-                        <motion.button
-                            className="rsvp__ticket-btn"
-                            onClick={() => navigate('/ticket')}
-                            animate={{ scale: [1, 1.035, 1] }}
-                            transition={{
-                                duration: 2.2,
-                                repeat: Infinity,
-                                ease: 'easeInOut',
-                            }}
-                            whileTap={{ scale: 0.96 }}
+                    {canViewTicket && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-10% 0px' }}
+                            transition={{ duration: 0.9, delay: 1.0, ease: FLUID_EASE }}
+                            className="rsvp__ticket-btn-wrapper"
                         >
-                            <span className="rsvp__ticket-btn__shimmer" />
-                            <LinkIcon size={20} weight="thin" className="rsvp__ticket-btn__icon" />
-                            <span className="rsvp__ticket-btn__label">Ver mis boletos</span>
-                        </motion.button>
-                    </motion.div>
+                            <motion.button
+                                className="rsvp__ticket-btn"
+                                onClick={() => goTo(APP_ROUTES.ticket)}
+                                animate={{ scale: [1, 1.035, 1] }}
+                                transition={{
+                                    duration: 2.2,
+                                    repeat: Infinity,
+                                    ease: 'easeInOut',
+                                }}
+                                whileTap={{ scale: 0.96 }}
+                            >
+                                <span className="rsvp__ticket-btn__shimmer" />
+                                <LinkIcon size={20} weight="thin" className="rsvp__ticket-btn__icon" />
+                                <span className="rsvp__ticket-btn__label">Ver mis boletos</span>
+                            </motion.button>
+                        </motion.div>
+                    )}
                 </div>
             </div>
         </section>

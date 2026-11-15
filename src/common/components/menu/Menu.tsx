@@ -1,16 +1,13 @@
 import React from 'react'
 import { ListIcon } from '@phosphor-icons/react'
-import { useLocation } from 'react-router-dom'
 
 import { Button } from '@/common/components/button/Button'
 import { useMenu } from '@/common/hooks'
 import type { MenuProps } from '@/common/types'
 import { MenuSidebar } from './MenuSidebar'
-
-const HIDDEN_ROUTES = ['/search', '/']
+import logo from '@/assets/images/icons/logo.webp'
 
 export const Menu: React.FC<MenuProps> = (props) => {
-    const { pathname } = useLocation()
     const {
         isMenuVisible,
         activeVariant,
@@ -20,7 +17,7 @@ export const Menu: React.FC<MenuProps> = (props) => {
         onOpenMenu,
     } = useMenu(props)
 
-    if (!isMenuVisible || HIDDEN_ROUTES.includes(pathname)) return null
+    if (!isMenuVisible) return null
 
     return (
         <>
@@ -36,13 +33,17 @@ export const Menu: React.FC<MenuProps> = (props) => {
                 </div>
             ) : (
                 <header className="menu menu--bar">
-                    <div className="menu__title">{activeTitle}</div>
+                    <div className="menu__logo">
+                        <img src={logo} alt="Logo" className="menu__logo-img" />
+                        <div className="menu__title">{activeTitle}</div>
+                    </div>
                     <Button
                         variant={activeBtnVariant}
                         radius="full"
                         onClick={onOpenMenu}
                         icon={<ListIcon size={24} />}
                         aria-label="Abrir menú"
+                        className="menu__btn"
                     />
                 </header>
             )}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { TicketHeader } from './components/TicketHeader'
 import { TicketBody } from './components/TicketBody'
 import { TicketFooter } from './components/TicketFooter'
@@ -9,20 +9,9 @@ import { useTicket } from '@/common/hooks'
 import bg from '@/assets/images/backgrounds/rsvp.jpeg'
 
 export const Ticket: React.FC = () => {
-    const { ticket, onGetTicket, onCheckInitialData } = useTicket()
+    const { ticket } = useTicket()
 
-    useEffect(() => {
-        const storedTicketStr = localStorage.getItem('abrasa-ticket')
-        const currentTicket = ticket || (storedTicketStr ? JSON.parse(storedTicketStr) : null)
-
-        if (currentTicket?.keyPass) {
-            onGetTicket(currentTicket.keyPass)
-        } else {
-            onCheckInitialData()
-        }
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [onGetTicket, onCheckInitialData])
+    if (!ticket) return null
 
     return (
         <div className="ticket">
@@ -36,7 +25,7 @@ export const Ticket: React.FC = () => {
                         <div className="ticket__dashed-line" />
                     </div>
 
-                    {ticket && <TicketBody ticket={ticket} />}
+                    <TicketBody ticket={ticket} />
 
                     <div className="ticket__divider">
                         <div className="ticket__dashed-line" />
@@ -54,7 +43,7 @@ export const Ticket: React.FC = () => {
                         <div className="ticket__dashed-line" />
                     </div>
 
-                    {ticket && <TicketFooter ticket={ticket} />}
+                    <TicketFooter ticket={ticket} />
                 </div>
             </div>
         </div>

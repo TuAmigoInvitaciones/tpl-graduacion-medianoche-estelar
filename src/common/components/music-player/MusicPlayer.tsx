@@ -1,14 +1,10 @@
 import React from 'react'
 import { PlayIcon, PauseIcon, MusicNotesIcon } from '@phosphor-icons/react'
-import { useLocation } from 'react-router-dom'
 import { useMusicPlayer } from '@/common/hooks'
 import { Button } from '../button/Button'
 import type { MusicPlayerProps } from '@/common/types'
 
-const HIDDEN_ROUTES = ['/search', '/']
-
 export const MusicPlayer: React.FC<MusicPlayerProps> = (props) => {
-    const { pathname } = useLocation()
     const {
         isPlaying,
         isMusicVisible,
@@ -19,7 +15,7 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = (props) => {
         onToggleMusic,
     } = useMusicPlayer(props)
 
-    if (!isMusicVisible || HIDDEN_ROUTES.includes(pathname)) return null
+    if (!isMusicVisible) return null
 
     const variantClass = `music-player--${activeVariant}`
     const playingClass = isPlaying ? 'music-player--playing' : ''

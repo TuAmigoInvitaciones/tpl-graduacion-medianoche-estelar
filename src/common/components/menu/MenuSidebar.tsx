@@ -1,44 +1,66 @@
-import React, { useState } from 'react'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { XIcon, CaretDownIcon } from '@phosphor-icons/react'
+import React from 'react'
+import {
+    XIcon,
+    EnvelopeSimpleIcon,
+    ArrowRightIcon,
+    GraduationCapIcon,
+    HouseIcon,
+    MapPinIcon,
+    ClockIcon,
+    TShirtIcon,
+    TicketIcon,
+} from '@phosphor-icons/react'
 
-import { useMenu } from '@/common/hooks/useMenu'
-import { useTicket } from '@/common/hooks/useTicket'
+import { useInvitationConfig, useMenu, useNavigation, useTicket } from '@/common/hooks'
+import { Button } from '@/common/components/button/Button'
 import type { MenuSidebarProps } from '@/common/types'
+import { APP_ROUTES } from '@/router/routes'
+import logo from '@/assets/images/icons/logo.webp'
+
+interface SectionItem {
+    label: string
+    href: string
+    icon: React.ReactNode
+    onClick?: () => void
+}
+
+const DEFAULT_SECTIONS: SectionItem[] = [
+    { label: 'Inicio', href: '#hero', icon: <HouseIcon size={20} /> },
+    { label: 'Ubicación', href: '#places', icon: <MapPinIcon size={20} /> },
+    { label: 'Graduados', href: '#graduates', icon: <GraduationCapIcon size={20} /> },
+    { label: 'Código de Vestimenta', href: '#dress-code', icon: <TShirtIcon size={20} /> },
+    { label: 'Itinerario', href: '#itinerary', icon: <ClockIcon size={20} /> },
+]
 
 export const MenuSidebar: React.FC<MenuSidebarProps> = ({
     title = 'CEB 6/1',
+    items = [],
+    children,
 }) => {
-    const { isMenuOpen, onCloseMenu } = useMenu()
-    const { onRemoveTicket } = useTicket()
-    const navigate = useNavigate()
-    const { pathname } = useLocation()
-    const [isAccordionOpen, setIsAccordionOpen] = useState(true)
+    const { goTo } = useNavigation()
+    const { isMenuOpen, onCloseMenu, activeTitle } = useMenu()
+    const { config } = useInvitationConfig()
+    const { ticket } = useTicket()
+    const canAccessTicket = Boolean(config.hasTicketingSystem && ticket)
 
-    const overlayClass = `menu-overlay ${isMenuOpen ? 'menu-overlay--open' : ''}`
-    const sidebarClass = `menu-sidebar ${isMenuOpen ? 'menu-sidebar--open' : ''}`
-
-    const handleLogout = () => {
-        onCloseMenu()
-        onRemoveTicket()
-    }
+    const importantSections = React.useMemo(() => {
+        if (items && items.length > 0 && items.length <= 5) {
+            return items.map((item) => ({
+                ...item,
+                icon: item.icon || DEFAULT_SECTIONS.find(d => (item.href || '').includes(d.href.replace('#', '')))?.icon || <HouseIcon size={20} />
+            }))
+        }
+        return DEFAULT_SECTIONS
+    }, [items])
 
     const handleNavigate = (path: string) => {
         onCloseMenu()
-        navigate(path)
+        goTo(path)
     }
 
-    const handleSectionClick = (href: string) => {
-        onCloseMenu()
-        if (pathname === '/invitation') {
-            const el = document.querySelector(href)
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' })
-            }
-        } else {
-            navigate(`/invitation${href}`)
-        }
-    }
+    const overlayClass = `menu-overlay ${isMenuOpen ? 'menu-overlay--open' : ''}`
+    const sidebarClass = `menu-sidebar ${isMenuOpen ? 'menu-sidebar--open' : ''}`
+    const headerTitle = activeTitle && activeTitle !== 'Menú' ? activeTitle : title
 
     return (
         <>
@@ -46,132 +68,81 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
 
             <aside className={sidebarClass} aria-label="Menú de navegación">
                 <header className="menu-sidebar__header">
-                    <div className="menu-sidebar__header-info">
-                        <h2 className="menu-sidebar__title">{title}</h2>
-                        <span className="menu-sidebar__subtitle">Navegación del Evento</span>
-                    </div>
-                    <button
-                        type="button"
-                        className="menu-sidebar__close-btn"
+                    <h2 className="menu-sidebar__title">{headerTitle}</h2>
+                    <Button
+                        variant="icon"
+                        radius="full"
                         onClick={onCloseMenu}
+                        icon={<XIcon size={22} />}
                         aria-label="Cerrar menú"
-                    >
-                        <XIcon size={20} />
-                    </button>
+                    />
                 </header>
 
                 <div className="menu-sidebar__content">
-                    <div className="menu-sidebar__actions">
-                        {/* Botón 1: Sobre */}
-                        <button
-                            type="button"
-                            className={`menu-action-card ${
-                                pathname === '/' ? 'menu-action-card--active' : ''
-                            }`}
-                            onClick={() => handleNavigate('/')}
-                        >
-                            <div className="menu-action-card__info">
-                                <span className="menu-action-card__title">Sobre Digital</span>
-                                <span className="menu-action-card__desc">Ver sobre de bienvenida</span>
-                            </div>
-                        </button>
-
-                        {/* Botón 2: Boleto */}
-                        <button
-                            type="button"
-                            className={`menu-action-card menu-action-card--ticket ${
-                                pathname === '/ticket' ? 'menu-action-card--active' : ''
-                            }`}
-                            onClick={() => handleNavigate('/ticket')}
-                        >
-                            <div className="menu-action-card__info">
-                                <span className="menu-action-card__title">Boleto Digital</span>
-                                <span className="menu-action-card__desc">Presentar en recepción</span>
-                            </div>
-                        </button>
-
-                        {/* Botón 3: Accordion Invitación */}
-                        <div className="menu-accordion">
-                            <button
-                                type="button"
-                                className={`menu-action-card menu-action-card--accordion ${
-                                    isAccordionOpen ? 'menu-action-card--open' : ''
-                                }`}
-                                onClick={() => setIsAccordionOpen(!isAccordionOpen)}
-                            >
-                                <div className="menu-action-card__info">
-                                    <span className="menu-action-card__title">Invitación Especial</span>
-                                    <span className="menu-action-card__desc">Secciones principales</span>
-                                </div>
-                                <div
-                                    className={`menu-accordion__chevron ${
-                                        isAccordionOpen ? 'menu-accordion__chevron--open' : ''
-                                    }`}
-                                >
-                                    <CaretDownIcon size={18} weight="bold" />
-                                </div>
-                            </button>
-
-                            {/* Contenido del Accordion sin iconos */}
-                            {isAccordionOpen && (
-                                <div className="menu-accordion__content">
-                                    <button
-                                        type="button"
-                                        className="menu-accordion__item"
-                                        onClick={() => handleSectionClick('#places')}
-                                    >
-                                        <span>Ubicación</span>
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="menu-accordion__item"
-                                        onClick={() => handleSectionClick('#itinerary')}
-                                    >
-                                        <span>Itinerario</span>
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="menu-accordion__item"
-                                        onClick={() => handleSectionClick('#dress-code')}
-                                    >
-                                        <span>Código de Vestimenta</span>
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="menu-accordion__item"
-                                        onClick={() => handleSectionClick('#graduates')}
-                                    >
-                                        <span>Graduados</span>
-                                    </button>
-
-                                    <button
-                                        type="button"
-                                        className="menu-accordion__item"
-                                        onClick={() => handleSectionClick('#reminders')}
-                                    >
-                                        <span>Recordatorios</span>
-                                    </button>
-                                </div>
-                            )}
-                        </div>
+                    <div className="menu-sidebar__centered-logo">
+                        <img src={logo} alt="Logo" className="menu-sidebar__logo-img" />
                     </div>
+
+                    <div className="menu-sidebar__actions">
+                        <Button
+                            variant="primary"
+                            fullWidth
+                            radius="sm"
+                            icon={<EnvelopeSimpleIcon size={20} weight="regular" />}
+                            iconPosition="left"
+                            onClick={() => handleNavigate(APP_ROUTES.envelope)}
+                            className="menu-sidebar__action-btn menu-sidebar__action-btn--envelope"
+                        >
+                            <span>Sobre Virtual</span>
+                            <ArrowRightIcon size={16} className="menu-sidebar__action-btn-arrow" />
+                        </Button>
+
+                        {canAccessTicket && (
+                            <Button
+                                variant="secondary"
+                                fullWidth
+                                radius="sm"
+                                icon={<TicketIcon size={20} weight="regular" />}
+                                iconPosition="left"
+                                onClick={() => handleNavigate(APP_ROUTES.ticket)}
+                                className="menu-sidebar__action-btn menu-sidebar__action-btn--ticket"
+                            >
+                                <span>Boleto Digital</span>
+                                <ArrowRightIcon size={16} className="menu-sidebar__action-btn-arrow" />
+                            </Button>
+                        )}
+                    </div>
+
+                    {children ? (
+                        children
+                    ) : (
+                        <div className="menu-sidebar__sections-direct">
+                            <ul className="menu-sidebar__list">
+                                {importantSections.map((item, index) => (
+                                    <li key={index} className="menu-sidebar__item">
+                                        <a
+                                            href={item.href}
+                                            className="menu-sidebar__link"
+                                            onClick={() => {
+                                                if (item.onClick) item.onClick()
+                                                onCloseMenu()
+                                            }}
+                                        >
+                                            <span className="menu-sidebar__link-icon">{item.icon}</span>
+                                            <span>{item.label}</span>
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
                 </div>
 
-                {/* Footer Pinned Action: Buscar Invitación */}
                 <footer className="menu-sidebar__footer">
-                    <button
-                        type="button"
-                        className="menu-logout-btn"
-                        onClick={handleLogout}
-                    >
-                        <div className="menu-logout-btn__info">
-                            <span className="menu-logout-btn__title">BUSCAR INVITACIÓN</span>
-                            <span className="menu-logout-btn__desc">Cambiar de invitado o pase</span>
-                        </div>
-                    </button>
+                    <div className="menu-sidebar__footer-badge">
+                        <GraduationCapIcon size={16} weight="fill" className="menu-sidebar__footer-icon" />
+                        <span>¡Te esperamos en nuestra graduación!</span>
+                    </div>
                 </footer>
             </aside>
         </>
