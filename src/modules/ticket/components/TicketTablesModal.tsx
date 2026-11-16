@@ -10,12 +10,12 @@ export const TicketTablesModal: React.FC = () => {
 
     return (
         <Modal size="lg">
-            <div className="ticket__tables-modal" style={{ flexDirection: 'column', gap: '1.5rem', width: '100%', alignItems: 'center' }}>
+            <div className="ticket__tables-modal">
                 <a
                     href={mesasImage}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ display: 'block', width: '100%', maxWidth: '500px', cursor: 'zoom-in' }}
+                    className="ticket__tables-modal-link"
                 >
                     <img
                         src={mesasImage}
@@ -23,20 +23,20 @@ export const TicketTablesModal: React.FC = () => {
                         className="ticket__tables-modal-image"
                     />
                 </a>
-                <p style={{ fontSize: '0.85rem', color: '#6b7280', margin: '0', textAlign: 'center', fontFamily: 'sans-serif' }}>
+                <p className="ticket__tables-modal-hint">
                     💡 Haz clic o toca el mapa para abrirlo en tamaño completo y poder hacer zoom.
                 </p>
 
                 {ticket && (
-                    <div className="ticket__table-card" style={{ width: '100%', maxWidth: '500px', borderRadius: '8px' }}>
+                    <div className="ticket__table-card ticket__tables-modal-card">
                         <span className="ticket__table-label">Mesa reservada para:</span>
-                        <span style={{ fontSize: '1.25rem', fontWeight: 600, color: '#191D39', fontFamily: 'var(--font-serif)', textAlign: 'center', marginBottom: '0.4rem', marginTop: '0.2rem' }}>
+                        <span className="ticket__tables-modal-guest">
                             {guestName}
                         </span>
-                        <span className="ticket__table-label" style={{ borderTop: '1px solid rgba(0, 0, 0, 0.08)', width: '100%', textAlign: 'center', paddingTop: '0.6rem', marginTop: '0.4rem' }}>
+                        <span className="ticket__table-label ticket__tables-modal-divider">
                             Mesa Asignada
                         </span>
-                        <span className="ticket__table-value" style={{ fontSize: '2.2rem', color: '#D4AF37', textShadow: '0px 1px 1px rgba(0,0,0,0.1)' }}>
+                        <span className="ticket__table-value ticket__tables-modal-number">
                             {tableInfo}
                         </span>
                     </div>

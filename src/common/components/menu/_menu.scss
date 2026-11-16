@@ -87,12 +87,12 @@
 
         .menu__title {
             font-family: vars.$font-serif;
-            font-size: 1.3rem;
-            font-weight: 600;
+            font-size: 1.4rem;
+            font-weight: 500;
             color: vars.$color-primary-900;
 
             @include mix.respondToMin('xs') {
-                font-size: 1.45rem;
+                font-size: 1.6rem;
             }
 
             @include mix.respondToMin('sm') {

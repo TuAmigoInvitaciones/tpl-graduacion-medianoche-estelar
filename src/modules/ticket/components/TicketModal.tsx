@@ -8,7 +8,7 @@ export const TicketModal: React.FC = () => {
     const isSafeQr = TicketHelpers.isSafeImageSrc(modalContent)
 
     return (
-        <Modal>
+        <Modal size="lg">
             <div className="ticket__modal">
                 {isSafeQr && (
                     <img src={modalContent} alt="Código QR ampliado" className="ticket__modal-image" />

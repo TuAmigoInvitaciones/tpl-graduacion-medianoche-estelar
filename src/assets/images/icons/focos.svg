@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 720" fill="none" preserveAspectRatio="xMidYMin meet">
+  <defs>
+    <radialGradient id="glow-warm" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff8d6" stop-opacity="0.95" />
+      <stop offset="28%" stop-color="#f8dc8c" stop-opacity="0.58" />
+      <stop offset="62%" stop-color="#e8be63" stop-opacity="0.22" />
+      <stop offset="100%" stop-color="#e8be63" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="bulb-glass" cx="42%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="38%" stop-color="#fff4c7" />
+      <stop offset="78%" stop-color="#edd087" />
+      <stop offset="100%" stop-color="#c49f54" />
+    </radialGradient>
+
+    <linearGradient id="socket-brass" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4e4032" />
+      <stop offset="35%" stop-color="#8b765b" />
+      <stop offset="70%" stop-color="#6b5945" />
+      <stop offset="100%" stop-color="#3f3327" />
+    </linearGradient>
+
+    <radialGradient id="pearl-bead" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="55%" stop-color="#f3ece0" />
+      <stop offset="100%" stop-color="#bfb099" />
+    </radialGradient>
+
+    <!-- Reusable warm Edison globe bulb (origin at top of socket) -->
+    <g id="edison-bulb">
+      <circle cx="0" cy="24" r="34" fill="url(#glow-warm)" />
+      <!-- Brass socket -->
+      <rect x="-4.2" y="0" width="8.4" height="7.5" rx="1.6" fill="url(#socket-brass)" />
+      <rect x="-5" y="6.2" width="10" height="3.8" rx="1.2" fill="url(#socket-brass)" />
+      <path d="M-2.2 0 C-2.2 -2.6, 2.2 -2.6, 2.2 0" fill="#5e4e3d" />
+      <!-- Glass globe -->
+      <path
+        d="M-4.6 9.8 C-5.5 14, -10.5 17.5, -10.5 24 C-10.5 30.2, -5.8 34.8, 0 34.8 C5.8 34.8, 10.5 30.2, 10.5 24 C10.5 17.5, 5.5 14, 4.6 9.8 Z"
+        fill="url(#bulb-glass)"
+        stroke="#b89858"
+        stroke-opacity="0.55"
+        stroke-width="0.7"
+      />
+      <!-- Filament -->
+      <path
+        d="M-2.2 13 L-1.6 22 Q0 25 1.6 22 L2.2 13"
+        stroke="#e89d2a"
+        stroke-width="0.85"
+        stroke-linecap="round"
+        fill="none"
+        opacity="0.85"
+      />
+      <circle cx="0" cy="22" r="2.2" fill="#fffdf0" opacity="0.9" />
+      <!-- Glass highlight -->
+      <path
+        d="M-6.4 20.5 C-6.2 17.6, -4.6 15.8, -3.2 15.2"
+        stroke="#ffffff"
+        stroke-width="1.4"
+        stroke-linecap="round"
+        opacity="0.72"
+      />
+    </g>
+
+    <!-- Reusable smaller round bulb -->
+    <g id="edison-bulb-sm">
+      <use href="#edison-bulb" transform="scale(0.8)" />
+    </g>
+  </defs>
+
+  <!-- Sweeping primary catenary cords reaching true edge-to-edge (-6 to 1006) -->
+  <g stroke="#928371" stroke-linecap="round" fill="none">
+    <!-- Main anchor V sweep from center apex (500, 2) to both edges -->
+    <path d="M-6 58 Q255 178 500 2 Q745 178 1006 58" stroke-width="2.4" opacity="0.9" />
+    <path d="M-6 57.2 Q255 177.2 500 1.2 Q745 177.2 1006 57.2" stroke="#cfc2b0" stroke-width="0.8" opacity="0.55" />
+
+    <!-- Second upper festoon curve edge-to-edge -->
+    <path d="M-6 112 Q215 245 500 4 Q785 245 1006 112" stroke-width="2" opacity="0.82" />
+    <path d="M-6 168 Q225 322 500 6 Q775 322 1006 168" stroke-width="1.8" opacity="0.76" />
+
+    <!-- Outer-to-inner double swoops (left side) -->
+    <path d="M-6 218 Q190 296 378 214" stroke-width="1.65" opacity="0.72" />
+    <path d="M68 354 Q170 486 266 312 Q352 442 452 190" stroke-width="1.95" opacity="0.8" />
+    <path d="M68 338 Q165 452 266 312" stroke-width="1.45" opacity="0.65" />
+
+    <!-- Right side cascading loops -->
+    <path d="M500 4 Q625 224 762 360 Q855 442 942 365" stroke-width="1.9" opacity="0.78" />
+    <path d="M682 146 Q845 220 1006 154" stroke-width="1.65" opacity="0.72" />
+    <path d="M726 246 Q865 292 1006 232" stroke-width="1.5" opacity="0.68" />
+  </g>
+
+  <!-- Subtle knot accents -->
+  <g fill="#7d6e5c">
+    <circle cx="500" cy="4" r="3" />
+    <circle cx="266" cy="312" r="3.2" />
+    <circle cx="598" cy="148" r="2.8" />
+    <circle cx="762" cy="360" r="3" />
+  </g>
+
+  <!-- Delicate pearl garland on right side -->
+  <g fill="url(#pearl-bead)">
+    <path d="M762 360 Q842 522 942 385" stroke="#c8ba9f" stroke-width="0.9" fill="none" opacity="0.65" />
+    <circle cx="766" cy="368" r="2.8" />
+    <circle cx="772" cy="383" r="3" />
+    <circle cx="779" cy="397" r="2.9" />
+    <circle cx="787" cy="411" r="3" />
+    <circle cx="796" cy="424" r="3.1" />
+    <circle cx="806" cy="435" r="3" />
+    <circle cx="817" cy="445" r="3.1" />
+    <circle cx="829" cy="452" r="3.2" />
+    <circle cx="842" cy="456" r="3.2" />
+    <circle cx="855" cy="457" r="3.2" />
+    <circle cx="868" cy="454" r="3.1" />
+    <circle cx="881" cy="449" r="3" />
+    <circle cx="894" cy="441" r="3.1" />
+    <circle cx="906" cy="431" r="3" />
+    <circle cx="917" cy="419" r="2.9" />
+    <circle cx="927" cy="406" r="2.9" />
+    <circle cx="936" cy="393" r="2.8" />
+  </g>
+
+  <!-- Vertical drop cords + hanging Edison bulbs (clear center bay below y=310 for MessageSection heading) -->
+  <g stroke="#8e7f6d" stroke-width="1.5" stroke-linecap="round">
+    <!-- Far left deep drop -->
+    <line x1="68" y1="90" x2="68" y2="612" />
+    <use href="#edison-bulb" x="68" y="612" />
+
+    <!-- Left cluster -->
+    <line x1="108" y1="224" x2="108" y2="288" />
+    <use href="#edison-bulb-sm" x="108" y="288" />
+
+    <line x1="180" y1="168" x2="180" y2="318" />
+    <use href="#edison-bulb" x="180" y="318" />
+
+    <line x1="208" y1="160" x2="208" y2="256" />
+    <use href="#edison-bulb-sm" x="208" y="256" />
+
+    <line x1="266" y1="312" x2="266" y2="386" />
+    <use href="#edison-bulb" x="266" y="386" />
+
+    <line x1="314" y1="92" x2="314" y2="296" />
+    <use href="#edison-bulb-sm" x="314" y="296" />
+
+    <line x1="360" y1="78" x2="360" y2="246" />
+    <use href="#edison-bulb" x="360" y="246" />
+
+    <!-- Central arch bulbs kept compact vertically so Message title never collides -->
+    <line x1="430" y1="138" x2="430" y2="254" />
+    <use href="#edison-bulb-sm" x="430" y="254" />
+
+    <line x1="494" y1="6" x2="494" y2="178" />
+    <use href="#edison-bulb" x="494" y="178" />
+
+    <line x1="540" y1="68" x2="540" y2="210" />
+    <use href="#edison-bulb-sm" x="540" y="210" />
+
+    <!-- Right-center cluster -->
+    <line x1="598" y1="148" x2="598" y2="266" />
+    <use href="#edison-bulb-sm" x="598" y="266" />
+
+    <line x1="664" y1="176" x2="664" y2="300" />
+    <use href="#edison-bulb" x="664" y="300" />
+
+    <line x1="702" y1="186" x2="702" y2="380" />
+    <use href="#edison-bulb-sm" x="702" y="380" />
+
+    <line x1="836" y1="100" x2="836" y2="338" />
+    <use href="#edison-bulb" x="836" y="338" />
+
+    <line x1="910" y1="88" x2="910" y2="278" />
+    <use href="#edison-bulb-sm" x="910" y="278" />
+
+    <!-- Far right deep drop -->
+    <line x1="942" y1="126" x2="942" y2="546" />
+    <use href="#edison-bulb-sm" x="942" y="546" />
+  </g>
+</svg>

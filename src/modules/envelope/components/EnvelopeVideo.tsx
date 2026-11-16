@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigation, useMusicPlayer } from '@/common/hooks'
 import envelopVideo from '@/assets/videos/envelop-opening.mp4'
-import selloIcon from '@/assets/images/icons/sello.webp'
 
 export const EnvelopeVideo: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -69,12 +68,6 @@ export const EnvelopeVideo: React.FC = () => {
                 preload="auto"
                 className="envelope-video__video"
                 onEnded={handleVideoEnded}
-            />
-
-            <img
-                src={selloIcon}
-                alt="Sello de Lacre"
-                className={`envelope-video__seal ${isPlayStarted ? 'opened' : ''}`}
             />
 
             {/* Transparent pulsing indicator overlayed on the center seal area to guide the click */}

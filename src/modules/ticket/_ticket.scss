@@ -11,6 +11,10 @@
     align-items: center;
     position: relative;
 
+    @include mix.respondToMin('xs') {
+        padding: 4rem 2.4rem;
+    }
+
     &__background {
         position: fixed;
         top: 0;
@@ -48,6 +52,13 @@
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         transition: transform 0.2s ease, background-color 0.2s ease;
 
+        @include mix.respondToMin('xs') {
+            top: 2.2rem;
+            left: 2.2rem;
+            padding: 1rem 2rem;
+            font-size: 1.15rem;
+        }
+
         &:hover {
             transform: translateY(-2px);
             background-color: #ffffff;
@@ -70,6 +81,12 @@
         z-index: 2;
         border-radius: 4px;
         margin: 2rem 0;
+
+        @include mix.respondToMin('xs') {
+            max-width: 45rem;
+            padding: 1.1rem;
+            margin: 3rem 0;
+        }
     }
 
     &__content {
@@ -82,6 +99,11 @@
         justify-content: space-between;
         gap: 1.4rem;
         position: relative;
+
+        @include mix.respondToMin('xs') {
+            padding: 3rem 2.4rem 2.4rem;
+            gap: 1.8rem;
+        }
     }
 
     &__header {
@@ -98,6 +120,11 @@
         align-items: center;
         gap: 0.4rem;
         margin-bottom: 1.6rem;
+
+        @include mix.respondToMin('xs') {
+            gap: 0.6rem;
+            margin-bottom: 2rem;
+        }
     }
 
     &__event-subtitle {
@@ -107,6 +134,12 @@
         letter-spacing: 0.28em;
         text-transform: uppercase;
         color: vars.$color-4;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.15rem;
+            letter-spacing: 0.24em;
+            line-height: 1.5;
+        }
     }
 
     &__couple-names {
@@ -118,6 +151,10 @@
         line-height: 1.2;
         letter-spacing: 0.02em;
         text-transform: uppercase;
+
+        @include mix.respondToMin('xs') {
+            font-size: 2.4rem;
+        }
     }
 
     &__event-details {
@@ -130,24 +167,43 @@
         padding: 1.2rem 1.4rem;
         border: 1px dashed rgba(vars.$color-4, 0.3);
         box-sizing: border-box;
+
+        @include mix.respondToMin('xs') {
+            gap: 1.5rem;
+            padding: 1.6rem 1.8rem;
+        }
     }
 
     &__detail-item {
         display: flex;
         align-items: flex-start;
         gap: 1rem;
+
+        @include mix.respondToMin('xs') {
+            gap: 1.2rem;
+        }
     }
 
     &__detail-icon {
         color: vars.$color-4;
         margin-top: 0.2rem;
         flex-shrink: 0;
+
+        @include mix.respondToMin('xs') {
+            width: 3rem;
+            height: 3rem;
+            margin-top: 0.1rem;
+        }
     }
 
     &__detail-text {
         display: flex;
         flex-direction: column;
         gap: 0.15rem;
+
+        @include mix.respondToMin('xs') {
+            gap: 0.25rem;
+        }
     }
 
     &__detail-label {
@@ -157,6 +213,10 @@
         letter-spacing: 0.14em;
         color: vars.$color-4;
         text-transform: uppercase;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.1rem;
+        }
     }
 
     &__detail-value {
@@ -166,6 +226,10 @@
         color: vars.$color-primary-900;
         line-height: 1.35;
         text-transform: uppercase;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.45rem;
+        }
     }
 
     &__detail-subvalue {
@@ -175,6 +239,11 @@
         line-height: 1.35;
         text-transform: uppercase;
         margin-top: 0.1rem;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.2rem;
+            line-height: 1.45;
+        }
     }
 
     &__divider {
@@ -200,6 +269,11 @@
         width: 100%;
         padding: 0.4rem 0 0;
         gap: 1.2rem;
+
+        @include mix.respondToMin('xs') {
+            padding: 0.6rem 0 0;
+            gap: 1.6rem;
+        }
     }
 
     &__qr-container {
@@ -209,6 +283,10 @@
         gap: 0.6rem;
         cursor: pointer;
         transition: transform 0.2s ease;
+
+        @include mix.respondToMin('xs') {
+            gap: 0.85rem;
+        }
 
         &:hover {
             transform: scale(1.02);
@@ -223,13 +301,22 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @include mix.respondToMin('xs') {
+            padding: 1.1rem;
+        }
     }
 
     &__qr-image {
-        width: 15rem;
-        height: 15rem;
+        width: 18rem;
+        height: 18rem;
         display: block;
         object-fit: contain;
+
+        @include mix.respondToMin('xs') {
+            width: 20rem;
+            height: 20rem;
+        }
     }
 
     &__qr-caption {
@@ -239,6 +326,10 @@
         font-weight: 600;
         letter-spacing: 0.08em;
         text-transform: uppercase;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.05rem;
+        }
     }
 
     &__guest-info {
@@ -248,6 +339,11 @@
         flex-direction: column;
         gap: 0.25rem;
         margin-top: 0.3rem;
+
+        @include mix.respondToMin('xs') {
+            gap: 0.4rem;
+            margin-top: 0.5rem;
+        }
     }
 
     &__guest-label {
@@ -257,6 +353,10 @@
         letter-spacing: 0.16em;
         text-transform: uppercase;
         font-weight: 700;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.05rem;
+        }
     }
 
     &__guest-name {
@@ -267,6 +367,11 @@
         margin: 0;
         letter-spacing: 0.02em;
         text-transform: uppercase;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.95rem;
+            line-height: 1.25;
+        }
     }
 
     &__passes-info {
@@ -275,6 +380,11 @@
         width: 100%;
         gap: 0.8rem;
         margin-top: 0.4rem;
+
+        @include mix.respondToMin('xs') {
+            gap: 1.2rem;
+            margin-top: 0.6rem;
+        }
     }
 
     &__pass-card {
@@ -289,6 +399,11 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
         transition: transform 0.2s ease, border-color 0.2s ease;
 
+        @include mix.respondToMin('xs') {
+            padding: 1.4rem 1rem;
+            gap: 0.5rem;
+        }
+
         &:hover {
             border-color: vars.$color-4;
             transform: translateY(-2px);
@@ -297,18 +412,22 @@
 
     &__pass-count {
         font-family: vars.$font-serif;
-        font-size: 2.2rem;
+        font-size: 2.6rem;
         font-weight: 700;
         color: vars.$color-primary-900;
+
+        @include mix.respondToMin('xs') {
+            font-size: 3.8rem;
+            line-height: 1;
+        }
     }
 
     &__pass-label {
         font-family: vars.$font-sans;
-        font-size: 0.78rem;
+        font-size: 1.2rem;
         font-weight: 700;
         letter-spacing: 0.1em;
         color: vars.$color-4;
-        text-transform: uppercase;
     }
 
     /* Sección Exclusiva de Mesas */
@@ -318,6 +437,10 @@
         gap: 1.2rem;
         width: 100%;
         align-items: center;
+
+        @include mix.respondToMin('xs') {
+            gap: 1.5rem;
+        }
     }
 
     &__table-card {
@@ -332,11 +455,16 @@
         gap: 0.3rem;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
         box-sizing: border-box;
+
+        @include mix.respondToMin('xs') {
+            padding: 1.6rem 1.8rem;
+            gap: 0.55rem;
+        }
     }
 
     &__table-label {
         font-family: vars.$font-sans;
-        font-size: 0.76rem;
+        font-size: 1.1rem;
         font-weight: 700;
         letter-spacing: 0.18em;
         color: vars.$color-4;
@@ -345,11 +473,16 @@
 
     &__table-value {
         font-family: vars.$font-serif;
-        font-size: 1.6rem;
+        font-size: 2.6rem;
         font-weight: 700;
         color: vars.$color-primary-900;
         text-transform: uppercase;
         letter-spacing: 0.04em;
+
+        @include mix.respondToMin('xs') {
+            font-size: 2.8rem;
+            line-height: 1.1;
+        }
     }
 
     /* Botón Ver Mesas Dorado */
@@ -363,6 +496,19 @@
 
     &__tables-btn {
         @include mix.goldFoilButton(vars.$color-4, vars.$color-primary, vars.$font-sans, $full-width: true);
+
+        @include mix.respondToMin('xs') {
+            padding: 1.35rem 3rem;
+
+            &__label {
+                font-size: 1.25rem;
+            }
+
+            &__icon {
+                width: 2.4rem;
+                height: 2.4rem;
+            }
+        }
     }
 
     /* Sección Aviso y Botón Descargar PDF */
@@ -371,6 +517,10 @@
         flex-direction: column;
         gap: 1rem;
         width: 100%;
+
+        @include mix.respondToMin('xs') {
+            gap: 1.4rem;
+        }
     }
 
     &__notice {
@@ -384,9 +534,19 @@
         text-align: center;
         box-sizing: border-box;
 
+        @include mix.respondToMin('xs') {
+            gap: 1.2rem;
+            padding: 1.3rem 1.6rem;
+        }
+
         &-icon {
             color: vars.$color-4;
             flex-shrink: 0;
+
+            @include mix.respondToMin('xs') {
+                width: 2.8rem;
+                height: 2.8rem;
+            }
         }
 
         &-text {
@@ -397,6 +557,11 @@
             margin: 0;
             line-height: 1.4;
             letter-spacing: 0.02em;
+
+            @include mix.respondToMin('xs') {
+                font-size: 1.25rem;
+                line-height: 1.5;
+            }
         }
     }
 
@@ -420,6 +585,16 @@
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.25s ease;
+
+            @include mix.respondToMin('xs') {
+                padding: 1.35rem 2.2rem;
+                font-size: 1.2rem;
+
+                svg {
+                    width: 2.3rem;
+                    height: 2.3rem;
+                }
+            }
 
             svg {
                 color: vars.$color-primary-900 !important;
@@ -451,6 +626,10 @@
         font-weight: 700;
         letter-spacing: 0.18em;
         color: rgba(vars.$color-primary-900, 0.6);
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.15rem;
+        }
     }
 
     &__footer-number {
@@ -459,21 +638,112 @@
         font-weight: 700;
         color: #d32f2f;
         letter-spacing: 0.12em;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.7rem;
+        }
     }
 }
 
-.ticket__modal,
-.ticket__tables-modal {
+.ticket__modal {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    box-sizing: border-box;
 
     &-image {
+        display: block;
         width: 100%;
-        max-width: 500px;
+        max-width: min(100%, 72vh);
         height: auto;
-        border-radius: 8px;
+        border-radius: 6px;
         object-fit: contain;
+        image-rendering: pixelated;
+    }
+}
+
+.ticket__tables-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 1.4rem;
+    padding: 0.6rem 0.4rem;
+    box-sizing: border-box;
+
+    @include mix.respondToMin('xs') {
+        gap: 1.6rem;
+        padding: 1rem 0.8rem;
+    }
+
+    &-link {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        cursor: zoom-in;
+    }
+
+    &-image {
+        width: auto;
+        max-width: 100%;
+        max-height: 50vh;
+        height: auto;
+        object-fit: contain;
+        margin: 0 auto;
+    }
+
+    &-hint {
+        font-family: vars.$font-sans;
+        font-size: 1.15rem;
+        color: #6b7280;
+        margin: 0;
+        text-align: center;
+        line-height: 1.45;
+        max-width: 38rem;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.3rem;
+        }
+    }
+
+    &-card {
+        width: 100%;
+        max-width: 42rem;
+        border-radius: 8px;
+    }
+
+    &-guest {
+        font-family: vars.$font-serif;
+        font-size: 1.55rem;
+        font-weight: 600;
+        color: vars.$color-primary-900;
+        text-align: center;
+        margin: 0.25rem 0 0.5rem;
+        line-height: 1.3;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.9rem;
+        }
+    }
+
+    &-divider {
+        border-top: 1px solid rgba(0, 0, 0, 0.08);
+        width: 100%;
+        text-align: center;
+        padding-top: 0.8rem;
+        margin-top: 0.4rem;
+    }
+
+    &-number {
+        font-size: 2.6rem;
+        color: vars.$color-4;
+        text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+
+        @include mix.respondToMin('xs') {
+            font-size: 3.2rem;
+        }
     }
 }
 
@@ -490,6 +760,10 @@
         color: vars.$color-primary-900;
         margin: 0;
         letter-spacing: 0.02em;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.35rem;
+        }
     }
 }
 

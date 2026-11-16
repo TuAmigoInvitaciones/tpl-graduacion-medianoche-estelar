@@ -35,7 +35,7 @@ export const SearchForm: React.FC = () => {
                     disabled={isLoading}
                 />
                 {errors.keyPass && (
-                    <span className="search-form__error" style={{ color: '#ff6b6b', fontSize: '1.1rem', marginTop: '0.2rem', textAlign: 'center' }}>
+                    <span className="search-form__error">
                         {errors.keyPass.message}
                     </span>
                 )}

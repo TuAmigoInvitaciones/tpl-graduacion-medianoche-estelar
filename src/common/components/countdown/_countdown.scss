@@ -152,6 +152,10 @@
 
         .countdown__number {
             font-size: 3.4rem;
+
+            @include mix.respondToMin('xs') {
+                font-size: 4.8rem;
+            }
         }
 
         .countdown__concept {

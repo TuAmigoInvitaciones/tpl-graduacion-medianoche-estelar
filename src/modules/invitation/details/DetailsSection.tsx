@@ -4,10 +4,11 @@ import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import { useToast } from '@/common/hooks/useToast'
 
 import megafono from '@/assets/images/icons/megafono.webp'
-import tendido from '@/assets/images/icons/tendido-2.webp'
+import tendido from '@/assets/images/icons/tendido-2.svg'
 import sillas from '@/assets/images/icons/sillas.webp'
 import copas from '@/assets/images/icons/copas.svg'
 import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
+import rsvpBg2 from '@/assets/images/backgrounds/rsvp-2.jpg'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
@@ -101,7 +102,8 @@ export const DetailsSection: React.FC = () => {
                     </motion.div>
 
                     <motion.div
-                        className="details-card"
+                        className="details-card details-card--framed details-card--framed-tl"
+                        style={{ backgroundImage: `url(${rsvpBg})` }}
                         initial={{ opacity: 0, x: cardDirections[1].x, y: cardDirections[1].y }}
                         whileInView={{ opacity: 1, x: 0, y: 0 }}
                         viewport={{ once: true, margin: '-10% 0px' }}
@@ -143,7 +145,8 @@ export const DetailsSection: React.FC = () => {
                     </motion.div>
 
                     <motion.div
-                        className="details-card"
+                        className="details-card details-card--framed details-card--framed-br"
+                        style={{ backgroundImage: `url(${rsvpBg2})` }}
                         initial={{ opacity: 0, x: cardDirections[2].x, y: cardDirections[2].y }}
                         whileInView={{ opacity: 1, x: 0, y: 0 }}
                         viewport={{ once: true, margin: '-10% 0px' }}

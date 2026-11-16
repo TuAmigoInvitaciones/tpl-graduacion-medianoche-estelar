@@ -11,7 +11,6 @@ import colagantes from '@/assets/images/icons/colgantes.webp'
 import macetero from '@/assets/images/icons/jarron.webp'
 import iconChurch from '@/assets/images/icons/icon-church.svg'
 import iconCups from '@/assets/images/icons/icon-cups.svg'
-import placesDecoration1 from '@/assets/images/icons/places-decoration-1.svg'
 import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
@@ -21,6 +20,17 @@ const getPlaceIcon = (title?: string) => {
     return /ceremonia|iglesia|misa|templo|parroquia/.test(normalized)
         ? iconChurch
         : iconCups
+}
+
+const getRibbonCorner = (title?: string, idx = 0): 'top-left' | 'top-right' => {
+    const normalized = (title ?? '').toLowerCase()
+    if (/ceremonia|iglesia|misa|templo|parroquia/.test(normalized)) {
+        return 'top-left'
+    }
+    if (/recepci[oó]n|fiesta|sal[oó]n|banquete/.test(normalized)) {
+        return 'top-right'
+    }
+    return idx % 2 === 0 ? 'top-left' : 'top-right'
 }
 
 const getCardVariant = (idx: number) => ({
@@ -60,8 +70,8 @@ export const PlacesSection: React.FC = () => {
                         transition={{ duration: 1.1, delay: 0.2, ease: FLUID_EASE }}
                     >
                         <SectionHeader
-                            pretitle="DÓNDE Y CUÁNDO"
-                            title="Ubicaciones"
+                            pretitle="NO TE PIERDAS"
+                            title="Ubicaciones Especiales"
                             align="center"
                             variant="uppercase"
                         />
@@ -85,9 +95,7 @@ export const PlacesSection: React.FC = () => {
                     <div className="places-section__grid">
                         {placesConfig.locations.map((loc, idx) => {
                             const variant = getCardVariant(idx)
-                            const corners = idx % 2 === 0
-                                ? ['top-left', 'bottom-right']
-                                : ['top-right', 'bottom-left']
+                            const ribbonCorner = getRibbonCorner(loc.title, idx)
 
                             return (
                                 <motion.div
@@ -98,15 +106,11 @@ export const PlacesSection: React.FC = () => {
                                     viewport={{ once: true, margin: '-10% 0px' }}
                                     transition={{ duration: 1.1, delay: 0.35 + idx * 0.22, ease: FLUID_EASE }}
                                 >
-                                    {corners.map((corner) => (
-                                        <img
-                                            key={corner}
-                                            src={placesDecoration1}
-                                            alt=""
-                                            aria-hidden="true"
-                                            className={`places-item__decoration places-item__decoration--${corner}`}
-                                        />
-                                    ))}
+                                    <div
+                                        className={`places-item__ribbon places-item__ribbon--${ribbonCorner}`}
+                                        style={{ '--rsvp-bg': `url(${rsvpBg})` } as React.CSSProperties}
+                                        aria-hidden="true"
+                                    />
 
                                     <img
                                         src={getPlaceIcon(loc.title)}
@@ -133,8 +137,9 @@ export const PlacesSection: React.FC = () => {
 
                                     {loc.url && (
                                         <Button
+                                            variant="primary"
+                                            radius="full"
                                             icon={<MapPinIcon size={22} weight='thin' />}
-                                            variant="secondary"
                                             onClick={() => window.open(loc.url, '_blank')}
                                             className="places-item__button"
                                         >

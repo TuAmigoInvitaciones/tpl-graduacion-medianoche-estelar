@@ -8,18 +8,30 @@
     justify-content: center;
     align-items: center;
 
+    @include mix.respondToMin('xs') {
+        padding: 9rem 2.4rem;
+    }
+
     &__container {
         width: 100%;
         max-width: 580px;
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        @include mix.respondToMin('xs') {
+            max-width: 48rem;
+        }
     }
 }
 
 .dress-code-hero {
     width: 100%;
     margin-bottom: 1.5rem;
+
+    @include mix.respondToMin('xs') {
+        margin-bottom: 2rem;
+    }
 }
 
 .dress-code-illustration__wrapper {
@@ -29,6 +41,10 @@
     z-index: 2;
     margin-bottom: -5rem;
     pointer-events: none;
+
+    @include mix.respondToMin('xs') {
+        margin-bottom: -5.8rem;
+    }
 }
 
 .dress-code-illustration {
@@ -36,6 +52,10 @@
     height: auto;
     object-fit: contain;
     filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.06));
+
+    @include mix.respondToMin('xs') {
+        width: min(70%, 34rem);
+    }
 }
 
 .dress-code-card-main {
@@ -52,6 +72,11 @@
     position: relative;
     z-index: 1;
 
+    @include mix.respondToMin('xs') {
+        padding: 8rem 3.2rem 4rem;
+        gap: 1.8rem;
+    }
+
     &__title {
         font-family: vars.$font-serif;
         font-size: 1.8rem;
@@ -59,6 +84,10 @@
         color: vars.$color-primary-900;
         margin: 0;
         letter-spacing: 0.02em;
+
+        @include mix.respondToMin('xs') {
+            font-size: 2.2rem;
+        }
     }
 
     &__description {
@@ -70,6 +99,12 @@
         letter-spacing: 0.5px;
         margin: 0;
         width: 90%;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.5rem;
+            line-height: 1.85;
+            width: 94%;
+        }
     }
 
     &__note {
@@ -81,6 +116,12 @@
         letter-spacing: 0.5px;
         margin: 0;
         width: 90%;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.5rem;
+            line-height: 1.85;
+            width: 94%;
+        }
     }
 }
 
@@ -211,12 +252,21 @@
     flex-direction: column;
     align-items: center;
 
+    @include mix.respondToMin('xs') {
+        margin-top: 1.6rem;
+        padding-top: 2rem;
+    }
+
     &__swatches {
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 1.4rem;
         flex-wrap: wrap;
+
+        @include mix.respondToMin('xs') {
+            gap: 2.2rem;
+        }
     }
 }
 
@@ -226,12 +276,21 @@
     align-items: center;
     gap: 0.65rem;
 
+    @include mix.respondToMin('xs') {
+        gap: 0.9rem;
+    }
+
     &__circle {
         width: 54px;
         height: 54px;
         border-radius: 50%;
         box-shadow: inset 0 2px 6px rgba(255, 255, 255, 0.7), 0 4px 14px rgba(0, 0, 0, 0.06);
         transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+        @include mix.respondToMin('xs') {
+            width: 6.2rem;
+            height: 6.2rem;
+        }
 
         &:hover {
             transform: scale(1.1);
@@ -262,5 +321,10 @@
         text-transform: uppercase;
         color: vars.$color-primary-800;
         text-align: center;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+        }
     }
 }

@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useInvitationConfig, useCalendar } from '@/common/hooks'
 import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import { Countdown } from '@/common/components/countdown/Countdown'
-import bulbs from '@/assets/images/icons/focos.png'
+import bulbs from '@/assets/images/icons/focos.svg'
 import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
@@ -104,6 +104,7 @@ export const CountdownSection: React.FC = () => {
             <motion.img
                 src={bulbs}
                 alt="Holding Bulbs"
+                className="countdown-section__bulbs"
                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true, margin: '-5% 0px' }}

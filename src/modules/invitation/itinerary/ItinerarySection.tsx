@@ -73,7 +73,7 @@ export const ItinerarySection: React.FC = () => {
                         viewport={{ once: true, margin: '-10% 0px' }}
                         transition={{ duration: 1.0, delay: 0.55, ease: FLUID_EASE }}
                     >
-                        Programa
+                        Las amenidades
                     </motion.h2>
 
                     <motion.div

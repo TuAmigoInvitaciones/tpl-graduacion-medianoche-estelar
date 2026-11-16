@@ -9,9 +9,13 @@
     align-items: center;
     width: 100%;
 
+    @include mix.respondToMin('xs') {
+        margin-top: -15rem;
+    }
+
     &__container {
         width: 100%;
-        max-width: 550px;
+        max-width: 55rem;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -23,6 +27,12 @@
         flex-direction: column;
         align-items: center;
         gap: 1.8rem;
+
+        @include mix.respondToMin('xs') {
+            gap: 0.8rem;
+            max-width: 44rem;
+            margin: 0 auto;
+        }
     }
 
     &__text {
@@ -56,6 +66,11 @@
         &--open {
             align-self: flex-start;
             margin-left: 1rem;
+
+            @include mix.respondToMin('xs') {
+                margin-left: 2.8rem;
+                margin-bottom: -0.6rem;
+            }
         }
 
         &--close {
@@ -63,6 +78,11 @@
             margin-right: 1rem;
             transform: rotate(180deg) translateY(-0.2em);
             display: inline-block;
+
+            @include mix.respondToMin('xs') {
+                margin-right: 2.8rem;
+                margin-top: -0.6rem;
+            }
         }
     }
 

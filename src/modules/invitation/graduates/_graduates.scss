@@ -9,6 +9,10 @@
     align-items: center;
     background-color: vars.$color-4-200;
 
+    @include mix.respondToMin('xs') {
+        padding-top: 8rem;
+    }
+
     &__container {
         width: 100%;
         max-width: 960px;
@@ -26,6 +30,10 @@
         padding: 1rem;
         box-sizing: border-box;
         position: relative;
+
+        @include mix.respondToMin('xs') {
+            width: 85%;
+        }
     }
 
     &__content {
@@ -63,12 +71,16 @@
     }
 
     &__sub-message {
-        font-family: vars.$font-sans;
-        font-size: clamp(0.8rem, 2.4vw, 0.9rem);
+        font-family: vars.$font-serif;
+        font-size: 1rem;
         color: vars.$color-text-500;
         text-transform: uppercase;
         margin: 2rem 0;
         letter-spacing: 1px;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.2rem;
+        }
     }
 
     &__columns {
@@ -95,12 +107,16 @@
 
     &__col-label,
     &__col-value {
-        font-family: vars.$font-sans;
-        font-size: clamp(.8rem, 2.2vw, 0.8rem);
+        font-family: vars.$font-serif;
+        font-size: 1rem;
         color: vars.$color-text-500;
         margin: 0;
         text-transform: uppercase;
         letter-spacing: 1px;
+
+        @include mix.respondToMin('xs') {
+            font-size: 1.1rem;
+        }
     }
 
     &__logo-container {
@@ -171,25 +187,7 @@
     }
 
     &__button {
-        font-family: vars.$font-sans;
-        font-size: clamp(0.75rem, 2.2vw, 0.85rem);
-        font-weight: 600;
-        letter-spacing: 3px;
-        text-transform: uppercase;
-        padding: 0.9rem 2.5rem;
-        background-color: transparent;
-        border: 1px solid vars.$color-primary-400;
-        color: vars.$color-primary;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: all 0.3s ease;
+        @include mix.navyFoilButton(vars.$color-primary, vars.$color-4, vars.$font-sans);
         margin-top: 1.2rem;
-
-        &:hover {
-            background-color: vars.$color-primary;
-            border-color: vars.$color-primary;
-            color: #ffffff;
-            box-shadow: 0 4px 15px rgba(vars.$color-primary, 0.2);
-        }
     }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
 import { motion, type Variants } from 'framer-motion'
-import { Button } from '@/common/components/button/Button'
 
 import bg from '@/assets/images/backgrounds/rsvp.jpeg'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
@@ -9,6 +8,21 @@ import { useDrawer } from '@/common/hooks'
 import { DRAWER_NAMES } from '@/store/ui/drawer.slice'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
+
+const CAREERS = [
+    {
+        drawer: DRAWER_NAMES.tics,
+        label: 'Tecnologías de la Información y Comunicación',
+    },
+    {
+        drawer: DRAWER_NAMES.administracion,
+        label: 'Administración',
+    },
+    {
+        drawer: DRAWER_NAMES.intervencion,
+        label: 'Intervención en la Educación Obligatoria',
+    },
+] as const
 
 const careerContainerVariants: Variants = {
     hidden: {},
@@ -96,43 +110,36 @@ export const GraduatesSection: React.FC = () => {
                                 whileInView="visible"
                                 viewport={{ once: true, margin: '-10% 0px' }}
                             >
-                                <motion.div className="graduates__career-item" variants={careerItemVariants}>
-                                    <h4 className="graduates__career-name">Tecnologías de la Información y Comunicación</h4>
-                                    <Button
-                                        icon={<ArrowUpRightIcon size={22} />}
-                                        variant="outline"
-                                        className="graduates__button"
-                                        onClick={() => onOpenDrawer(DRAWER_NAMES.tics, 'Tecnologías de la Información y Comunicación')}
+                                {CAREERS.map((career, index) => (
+                                    <motion.div
+                                        key={career.drawer}
+                                        className="graduates__career-item"
+                                        variants={careerItemVariants}
                                     >
-                                        Ver graduados
-                                    </Button>
-                                </motion.div>
-
-                                <motion.div className="graduates__career-item" variants={careerItemVariants}>
-                                    <div className="graduates__career-divider" />
-                                    <h4 className="graduates__career-name">Administración</h4>
-                                    <Button
-                                        icon={<ArrowUpRightIcon size={22} />}
-                                        variant="outline"
-                                        className="graduates__button"
-                                        onClick={() => onOpenDrawer(DRAWER_NAMES.administracion, 'Administración')}
-                                    >
-                                        Ver graduados
-                                    </Button>
-                                </motion.div>
-
-                                <motion.div className="graduates__career-item" variants={careerItemVariants}>
-                                    <div className="graduates__career-divider" />
-                                    <h4 className="graduates__career-name">Intervención en la Educación Obligatoria</h4>
-                                    <Button
-                                        icon={<ArrowUpRightIcon size={22} />}
-                                        variant="outline"
-                                        className="graduates__button"
-                                        onClick={() => onOpenDrawer(DRAWER_NAMES.intervencion, 'Intervención en la Educación Obligatoria')}
-                                    >
-                                        Ver graduados
-                                    </Button>
-                                </motion.div>
+                                        {index > 0 && <div className="graduates__career-divider" />}
+                                        <h4 className="graduates__career-name">{career.label}</h4>
+                                        <motion.button
+                                            type="button"
+                                            className="graduates__button"
+                                            onClick={() => onOpenDrawer(career.drawer, career.label)}
+                                            animate={{ scale: [1, 1.035, 1] }}
+                                            transition={{
+                                                duration: 2.2,
+                                                repeat: Infinity,
+                                                ease: 'easeInOut',
+                                            }}
+                                            whileTap={{ scale: 0.96 }}
+                                        >
+                                            <span className="graduates__button__shimmer" aria-hidden="true" />
+                                            <span className="graduates__button__label">Ver graduados</span>
+                                            <ArrowUpRightIcon
+                                                size={19}
+                                                weight="bold"
+                                                className="graduates__button__icon"
+                                            />
+                                        </motion.button>
+                                    </motion.div>
+                                ))}
                             </motion.div>
                         </div>
                     </motion.div>
