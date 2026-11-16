@@ -12,6 +12,7 @@ import { GraduatesSection } from './graduates/GraduatesSection'
 import { DetailsSection } from './details/DetailsSection'
 import { FarewellSection } from './farewell/FarewellSection'
 import { GuestPhotosSection } from './guest-photos/GuestPhotosSection'
+import { GallerySection } from './gallery/GallerySection'
 
 export const Invitation: React.FC = () => {
     const { activeVariant, isMenuVisible } = useMenu()
@@ -27,6 +28,7 @@ export const Invitation: React.FC = () => {
             <RsvpSection />
             <PlacesSection />
             <GraduatesSection />
+            <GallerySection />
             <DressCodeSection />
             <GuestPhotosSection />
             <ItinerarySection />

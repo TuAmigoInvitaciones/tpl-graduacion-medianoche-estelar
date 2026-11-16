@@ -384,19 +384,34 @@
 
     &__logout-btn {
         font-family: vars.$font-serif !important;
-        font-size: 1.25rem !important;
+        font-size: 1.2rem !important;
         font-weight: 600 !important;
-        letter-spacing: 0.06em !important;
+        letter-spacing: 0.08em !important;
         text-transform: uppercase !important;
-        padding: 1.15rem 1.6rem !important;
+        padding: 1.2rem 1.6rem !important;
         border-radius: 0.6rem !important;
-        border-color: rgba(vars.$color-primary, 0.35) !important;
-        color: vars.$color-primary-900 !important;
+        background: linear-gradient(135deg, #fff5f5 0%, #fee2e2 100%) !important;
+        border: 1.5px solid rgba(#b91c1c, 0.35) !important;
+        color: #991b1b !important;
+        box-shadow: 0 3px 12px rgba(#991b1b, 0.08);
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+
+        .btn__icon {
+            color: #b91c1c;
+            transition: transform 0.25s ease, color 0.25s ease;
+        }
 
         &:hover:not(:disabled) {
-            background-color: #fef2f2 !important;
-            border-color: #dc2626 !important;
-            color: #dc2626 !important;
+            background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%) !important;
+            border-color: #991b1b !important;
+            color: #ffffff !important;
+            box-shadow: 0 6px 18px rgba(#991b1b, 0.24);
+            transform: translateY(-1px);
+
+            .btn__icon {
+                color: #ffffff;
+                transform: translateX(-2px);
+            }
         }
     }
 
@@ -532,7 +547,7 @@
             }
         }
 
-        &--envelope {
+        &--ticket {
             background: linear-gradient(135deg, vars.$color-primary 0%, vars.$color-primary-800 100%) !important;
             color: #ffffff !important;
             border: 1px solid rgba(vars.$color-primary-900, 0.3) !important;
@@ -552,7 +567,7 @@
             }
         }
 
-        &--ticket {
+        &--envelope {
             background: linear-gradient(135deg, #ffffff 0%, vars.$color-secondary-100 100%) !important;
             color: vars.$color-primary-900 !important;
             border: 1.5px solid rgba(vars.$color-primary, 0.35) !important;
@@ -608,14 +623,15 @@
         width: 100%;
         padding: 1.1rem 1.4rem;
         font-family: vars.$font-serif;
-        font-size: 1.35rem;
-        font-weight: 500;
+        font-size: 1.25rem;
+        font-weight: 600;
         color: vars.$color-primary-900;
         text-decoration: none;
+        text-transform: uppercase;
         border-radius: 0;
         border-left: 3px solid transparent;
         transition: all 0.2s ease;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.08em;
 
         &:hover {
             background-color: vars.$color-secondary-200;

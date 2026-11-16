@@ -93,22 +93,9 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
                     </div>
 
                     <div className="menu-sidebar__actions">
-                        <Button
-                            variant="primary"
-                            fullWidth
-                            radius="sm"
-                            icon={<EnvelopeSimpleIcon size={20} weight="regular" />}
-                            iconPosition="left"
-                            onClick={() => handleNavigate(APP_ROUTES.envelope)}
-                            className="menu-sidebar__action-btn menu-sidebar__action-btn--envelope"
-                        >
-                            <span>Sobre Virtual</span>
-                            <ArrowRightIcon size={16} className="menu-sidebar__action-btn-arrow" />
-                        </Button>
-
                         {canAccessTicket && (
                             <Button
-                                variant="secondary"
+                                variant="primary"
                                 fullWidth
                                 radius="sm"
                                 icon={<TicketIcon size={20} weight="regular" />}
@@ -120,6 +107,19 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
                                 <ArrowRightIcon size={16} className="menu-sidebar__action-btn-arrow" />
                             </Button>
                         )}
+
+                        <Button
+                            variant="secondary"
+                            fullWidth
+                            radius="sm"
+                            icon={<EnvelopeSimpleIcon size={20} weight="regular" />}
+                            iconPosition="left"
+                            onClick={() => handleNavigate(APP_ROUTES.envelope)}
+                            className="menu-sidebar__action-btn menu-sidebar__action-btn--envelope"
+                        >
+                            <span>Sobre Virtual</span>
+                            <ArrowRightIcon size={16} className="menu-sidebar__action-btn-arrow" />
+                        </Button>
                     </div>
 
                     {children ? (

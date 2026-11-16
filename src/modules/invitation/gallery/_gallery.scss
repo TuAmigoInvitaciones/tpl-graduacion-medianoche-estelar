@@ -1,1 +1,197 @@
-.gallery {}
+@use '../../../common/styles/variables' as vars;
+@use '../../../common/styles/mixins' as mix;
+
+.gallery-section {
+    padding: 7rem 2rem 6.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+
+    &__container {
+        width: 100%;
+        max-width: 56rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3.6rem;
+    }
+
+    &__header {
+        width: 100%;
+    }
+
+    &__stage {
+        position: relative;
+        width: 100%;
+        max-width: 34rem;
+        margin: 0 auto;
+        padding-right: 2rem;
+        box-sizing: border-box;
+    }
+
+    &__quote-frame {
+        position: relative;
+        z-index: 20;
+        width: 88%;
+        max-width: 28rem;
+        margin-top: -1rem;
+        margin-left: auto;
+        margin-right: -4.2rem;
+        padding: 1rem;
+        background-size: cover;
+        background-position: center;
+        box-shadow:
+            0 1.6rem 3.8rem rgba(vars.$color-primary-900, 0.2),
+            0 0.4rem 1.2rem rgba(vars.$color-primary-900, 0.1);
+        pointer-events: none;
+    }
+
+    &__quote-card {
+        position: relative;
+        background-color: #faf7f2;
+        border: 1px solid rgba(vars.$color-4, 0.4);
+        padding: 1.8rem 1.6rem;
+        text-align: center;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0.35rem;
+            border: 0.5px solid rgba(vars.$color-4, 0.35);
+            pointer-events: none;
+        }
+    }
+
+    &__quote-text {
+        font-family: vars.$font-serif;
+        font-style: italic;
+        font-size: clamp(1.15rem, 3.2vw, 1.3rem);
+        font-weight: 400;
+        line-height: 1.6;
+        margin: 0 0 0.8rem;
+        color: vars.$color-primary-900;
+    }
+
+    &__quote-author {
+        display: block;
+        font-family: vars.$font-serif;
+        font-style: italic;
+        font-size: clamp(1rem, 2.6vw, 1.1rem);
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        color: vars.$color-4-700;
+    }
+
+    &__flowers {
+        position: absolute;
+        left: -0.8rem;
+        bottom: -5.4rem;
+        width: 12rem;
+        height: auto;
+        z-index: 22;
+        pointer-events: none;
+        user-select: none;
+        filter: drop-shadow(0 0.6rem 1.4rem rgba(3.9215686275%, 4.5490196078%, 8.9411764706%, 0.12));
+    }
+}
+
+.gallery-deck {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    aspect-ratio: 4 / 5.2;
+    margin: 0 auto;
+    user-select: none;
+}
+
+.gallery-card {
+    position: absolute;
+    inset: 0;
+    background-color: #faf7f2;
+    padding: 1.1rem 1.1rem 3.2rem;
+    border: 1px solid rgba(vars.$color-primary-200, 0.45);
+    box-shadow:
+        0 1.4rem 3.2rem rgba(vars.$color-primary-900, 0.16),
+        0 0.4rem 1rem rgba(0, 0, 0, 0.08);
+    transform-origin: center center;
+    touch-action: pan-y;
+    outline: none;
+
+    &--front {
+        cursor: pointer;
+
+        &:focus-visible {
+            box-shadow:
+                0 0 0 3px rgba(vars.$color-4, 0.75),
+                0 1.4rem 3.2rem rgba(vars.$color-primary-900, 0.2);
+        }
+    }
+
+    &__media {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--navy {
+            background: linear-gradient(145deg, vars.$color-primary-200 0%, vars.$color-primary-100 100%);
+        }
+
+        &--gold {
+            background: linear-gradient(145deg, vars.$color-4-200 0%, vars.$color-4-100 100%);
+        }
+
+        &--rose {
+            background: linear-gradient(145deg, vars.$color-secondary-200 0%, vars.$color-secondary-100 100%);
+        }
+
+        &--sage {
+            background: linear-gradient(145deg, vars.$color-tertiary-200 0%, vars.$color-tertiary-100 100%);
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    &__placeholder {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 0.8rem;
+        padding: 2rem;
+        text-align: center;
+        color: vars.$color-primary-800;
+
+        &-icon {
+            color: vars.$color-primary;
+            opacity: 0.65;
+        }
+
+        &-label {
+            font-family: vars.$font-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        &-hint {
+            font-family: vars.$font-sans;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            opacity: 0.65;
+        }
+    }
+}
