@@ -1,3 +1,4 @@
+import { FormatHelpers } from '../utils/format.helpers'
 import { useInvitationConfig } from './useInvitationConfig'
 
 export interface SaveTheDateOptions {
@@ -22,21 +23,9 @@ export const useSaveTheDate = () => {
         const durationHours = customOptions?.durationHours ?? 8
         const endDate = new Date(startDate.getTime() + durationHours * 60 * 60 * 1000)
 
-        const formatDateToICal = (date: Date): string => {
-            const pad = (n: number) => (n < 10 ? `0${n}` : `${n}`)
-            const year = date.getUTCFullYear()
-            const month = pad(date.getUTCMonth() + 1)
-            const day = pad(date.getUTCDate())
-            const hours = pad(date.getUTCHours())
-            const minutes = pad(date.getUTCMinutes())
-            const seconds = pad(date.getUTCSeconds())
-
-            return `${year}${month}${day}T${hours}${minutes}${seconds}Z`
-        }
-
-        const startFormatted = formatDateToICal(startDate)
-        const endFormatted = formatDateToICal(endDate)
-        const nowFormatted = formatDateToICal(new Date())
+        const startFormatted = FormatHelpers.formatDateToICal(startDate)
+        const endFormatted = FormatHelpers.formatDateToICal(endDate)
+        const nowFormatted = FormatHelpers.formatDateToICal(new Date())
 
         const escapeICal = (text: string) =>
             text.replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n')

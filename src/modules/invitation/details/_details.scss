@@ -162,15 +162,7 @@
 }
 
 .details-hashtag-card {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.55rem;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 35px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    @include mix.damaskPillOuter;
     margin-top: 1.8rem;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 
@@ -180,30 +172,10 @@
 }
 
 .details-hashtag-inner {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: radial-gradient(circle, #ffffff 60%, #fbf9f4 100%);
-    border: 1px solid vars.$color-secondary;
-    border-radius: 28px;
-    padding: 0.75rem 2rem;
-    position: relative;
-    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.02);
+    @include mix.damaskPillInner(vars.$color-secondary);
     cursor: pointer;
     user-select: none;
     transition: border-color 0.25s ease;
-
-    &::before {
-        content: '';
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        right: 3px;
-        bottom: 3px;
-        border: 0.5px solid rgba(vars.$color-secondary, 0.7);
-        border-radius: 25px;
-        pointer-events: none;
-    }
 
     &:hover {
         border-color: vars.$color-primary;
@@ -211,9 +183,5 @@
 }
 
 .details-hashtag-tag {
-    font-family: vars.$font-serif;
-    font-size: 1.5rem;
-    font-weight: 500;
-    color: vars.$color-primary-900;
-    letter-spacing: 0.05em;
+    @include mix.damaskPillText(vars.$font-serif, vars.$color-primary-900);
 }

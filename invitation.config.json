@@ -42,8 +42,8 @@
     "hero": {
       "showHero": true,
       "names": "CEB 6/1",
-      "subtitle": "Nos complace invitarte a celebrar el día más importante de nuestras vidas",
-      "date": "7 DE JUNIO DE 2027",
+      "subtitle": "Nos complace invitarte a celebrar la culminación de una etapa",
+      "date": "7 DE ABRIL DE 2027",
       "city": "Aguascalientes, México"
     },
     "message": {
@@ -52,7 +52,7 @@
     },
     "countdown": {
       "showCountdown": true,
-      "targetDate": "2026-08-07T19:00:00"
+      "targetDate": "2027-04-07T19:00:00"
     },
     "family": {
       "showFamily": false,
@@ -68,7 +68,7 @@
           "venue": "Santuario de Nuestra Sra. de Guadalupe",
           "location": "C. Guadalupe 213, Barrio de Guadalupe, 20059 Aguascalientes, Ags.",
           "time": "19:00 HRS",
-          "date": "2026-08-07",
+          "date": "2027-04-07",
           "url": "https://maps.app.goo.gl/D2UKsaMMJWTN5UcE9"
         },
         {
@@ -76,7 +76,7 @@
           "venue": "Salón Hopaliz",
           "location": "Blvd. San Marcos #109 Capital City, 20207 Aguascalientes, Ags.",
           "time": "21:00 HRS",
-          "date": "2026-08-07",
+          "date": "2027-04-07",
           "url": "https://maps.app.goo.gl/Ej4U4gfopJPWMNuw5"
         }
       ]

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import {
     XIcon,
     EnvelopeSimpleIcon,
@@ -9,6 +9,7 @@ import {
     ClockIcon,
     TShirtIcon,
     TicketIcon,
+    SignOutIcon,
 } from '@phosphor-icons/react'
 
 import { useInvitationConfig, useMenu, useNavigation, useTicket } from '@/common/hooks'
@@ -33,17 +34,24 @@ const DEFAULT_SECTIONS: SectionItem[] = [
 ]
 
 export const MenuSidebar: React.FC<MenuSidebarProps> = ({
-    title = 'CEB 6/1',
+    title = 'Título de Invitación',
     items = [],
     children,
 }) => {
     const { goTo } = useNavigation()
     const { isMenuOpen, onCloseMenu, activeTitle } = useMenu()
     const { config } = useInvitationConfig()
-    const { ticket } = useTicket()
-    const canAccessTicket = Boolean(config.hasTicketingSystem && ticket)
+    const { ticket, onRemoveTicket } = useTicket()
 
-    const importantSections = React.useMemo(() => {
+    const hasTicketingSystem = Boolean(config.hasTicketingSystem)
+    const canAccessTicket = Boolean(hasTicketingSystem && ticket)
+    const showFooter = canAccessTicket || !hasTicketingSystem
+
+    const overlayClass = `menu-overlay ${isMenuOpen ? 'menu-overlay--open' : ''}`
+    const sidebarClass = `menu-sidebar ${isMenuOpen ? 'menu-sidebar--open' : ''}`
+    const headerTitle = activeTitle && activeTitle !== 'Menú' ? activeTitle : title
+
+    const importantSections = useMemo(() => {
         if (items && items.length > 0 && items.length <= 5) {
             return items.map((item) => ({
                 ...item,
@@ -58,9 +66,10 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
         goTo(path)
     }
 
-    const overlayClass = `menu-overlay ${isMenuOpen ? 'menu-overlay--open' : ''}`
-    const sidebarClass = `menu-sidebar ${isMenuOpen ? 'menu-sidebar--open' : ''}`
-    const headerTitle = activeTitle && activeTitle !== 'Menú' ? activeTitle : title
+    const handleExitTicket = () => {
+        onRemoveTicket()
+        goTo(APP_ROUTES.search)
+    }
 
     return (
         <>
@@ -138,12 +147,28 @@ export const MenuSidebar: React.FC<MenuSidebarProps> = ({
                     )}
                 </div>
 
-                <footer className="menu-sidebar__footer">
-                    <div className="menu-sidebar__footer-badge">
-                        <GraduationCapIcon size={16} weight="fill" className="menu-sidebar__footer-icon" />
-                        <span>¡Te esperamos en nuestra graduación!</span>
-                    </div>
-                </footer>
+                {showFooter && (
+                    <footer className="menu-sidebar__footer">
+                        {canAccessTicket ? (
+                            <Button
+                                variant="outline"
+                                fullWidth
+                                radius="sm"
+                                icon={<SignOutIcon size={18} weight="regular" />}
+                                iconPosition="left"
+                                onClick={handleExitTicket}
+                                className="menu-sidebar__logout-btn"
+                            >
+                                Salir del boleto
+                            </Button>
+                        ) : (
+                            <div className="menu-sidebar__footer-badge">
+                                <GraduationCapIcon size={16} weight="fill" className="menu-sidebar__footer-icon" />
+                                <span>¡Te esperamos en nuestra graduación!</span>
+                            </div>
+                        )}
+                    </footer>
+                )}
             </aside>
         </>
     )

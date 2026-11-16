@@ -5,6 +5,7 @@ import { openMenu, closeMenu } from '@/store/ui/menu.slice'
 import type { RootState } from '@/store/store'
 import type { MenuProps, MenuItem, MenuVariant, ButtonVariant } from '@/common/types'
 import { useInvitationConfig } from './useInvitationConfig'
+import { FormatHelpers } from '../utils/format.helpers'
 
 const SECTION_DEFAULTS: Record<string, { label: string; href: string }> = {
     hero: { label: 'Inicio', href: '#hero' },
@@ -19,11 +20,6 @@ const SECTION_DEFAULTS: Record<string, { label: string; href: string }> = {
 }
 
 const toKebabCase = (str: string) => str.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase()
-
-const formatTitleFromKey = (key: string) => {
-    const formatted = key.replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-    return formatted.charAt(0).toUpperCase() + formatted.slice(1)
-}
 
 export const useMenu = (props?: MenuProps) => {
     const { theme, ui, config, sections } = useInvitationConfig()
@@ -64,7 +60,7 @@ export const useMenu = (props?: MenuProps) => {
                 const label =
                     (typeof configObj.title === 'string' && configObj.title) ||
                     defaults?.label ||
-                    formatTitleFromKey(sectionKey)
+                    FormatHelpers.formatTitleFromKey(sectionKey)
 
                 const href =
                     (typeof configObj.href === 'string' && configObj.href) ||

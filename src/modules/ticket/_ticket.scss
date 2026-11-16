@@ -352,7 +352,7 @@
         letter-spacing: 0.04em;
     }
 
-    /* Botón Ver Mesas Premium Doradito */
+    /* Botón Ver Mesas Dorado */
     &__button {
         position: relative;
         z-index: 2;
@@ -362,64 +362,7 @@
     }
 
     &__tables-btn {
-        width: 100%;
-        padding: 1.15rem 2rem !important;
-        border: 1px solid rgba(#E5C158, 0.6) !important;
-        background: linear-gradient(135deg, #F3D370 0%, #D4AF37 45%, #AA8528 100%) !important;
-        color: #191D39 !important;
-        font-family: vars.$font-serif;
-        font-size: 0.95rem;
-        font-weight: 800 !important;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        border-radius: 100rem !important;
-        box-shadow:
-            0 6px 22px rgba(212, 175, 55, 0.45),
-            0 2px 8px rgba(0, 0, 0, 0.12);
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        position: relative;
-        overflow: hidden;
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg,
-                    transparent 20%,
-                    rgba(255, 255, 255, 0.45) 50%,
-                    transparent 80%);
-            transition: left 0.7s ease;
-            pointer-events: none;
-        }
-
-        .btn__icon,
-        svg {
-            color: #191D39 !important;
-            transition: transform 0.3s ease !important;
-        }
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow:
-                0 10px 28px rgba(212, 175, 55, 0.65),
-                0 4px 12px rgba(0, 0, 0, 0.15);
-
-            &::after {
-                left: 100%;
-            }
-
-            .btn__icon,
-            svg {
-                transform: scale(1.15) rotate(6deg) !important;
-            }
-        }
-
-        &:active {
-            transform: translateY(0);
-        }
+        @include mix.goldFoilButton(vars.$color-4, vars.$color-primary, vars.$font-sans, $full-width: true);
     }
 
     /* Sección Aviso y Botón Descargar PDF */
@@ -516,20 +459,6 @@
         font-weight: 700;
         color: #d32f2f;
         letter-spacing: 0.12em;
-    }
-}
-
-@keyframes buttonPulseRing {
-
-    0%,
-    100% {
-        transform: scale(1);
-        opacity: 0.7;
-    }
-
-    50% {
-        transform: scale(1.04);
-        opacity: 0.25;
     }
 }
 

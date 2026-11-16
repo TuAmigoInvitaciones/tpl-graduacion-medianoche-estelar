@@ -1,14 +1,27 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { MapPinIcon } from '@phosphor-icons/react'
+
 import { useInvitationConfig } from '@/common/hooks'
 import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import { Button } from '@/common/components/button/Button'
-import { MapPinIcon } from '@phosphor-icons/react'
+import { FormatHelpers } from '@/common/utils/format.helpers'
 
 import colagantes from '@/assets/images/icons/colgantes.webp'
 import macetero from '@/assets/images/icons/jarron.webp'
+import iconChurch from '@/assets/images/icons/icon-church.svg'
+import iconCups from '@/assets/images/icons/icon-cups.svg'
+import placesDecoration1 from '@/assets/images/icons/places-decoration-1.svg'
+import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
+
+const getPlaceIcon = (title?: string) => {
+    const normalized = (title ?? '').toLowerCase()
+    return /ceremonia|iglesia|misa|templo|parroquia/.test(normalized)
+        ? iconChurch
+        : iconCups
+}
 
 const getCardVariant = (idx: number) => ({
     initial: { opacity: 0, x: idx % 2 === 0 ? -35 : 35, y: 15 },
@@ -18,23 +31,11 @@ const getCardVariant = (idx: number) => ({
 export const PlacesSection: React.FC = () => {
     const { sections } = useInvitationConfig()
     const placesConfig = sections.places
+    const eventDate = sections.countdown?.targetDate || placesConfig?.locations?.[0]?.date
+    const formattedDate = FormatHelpers.formatLocalDate(eventDate)
 
     if (!placesConfig?.showPlaces || !placesConfig?.locations) {
         return null
-    }
-
-    const formatLocalDate = (dateStr?: string) => {
-        if (!dateStr) return ''
-        const [year, month, day] = dateStr.split('-').map(Number)
-        const dateObj = new Date(year, month - 1, day)
-
-        const options: Intl.DateTimeFormatOptions = {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long'
-        }
-        const formatted = dateObj.toLocaleDateString('es-ES', options)
-        return formatted.charAt(0).toUpperCase() + formatted.slice(1)
     }
 
     return (
@@ -52,6 +53,7 @@ export const PlacesSection: React.FC = () => {
             <section id="places" className="places-section">
                 <div className="places-section__container">
                     <motion.div
+                        className="places-section__header"
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true, margin: '-10% 0px' }}
@@ -63,11 +65,30 @@ export const PlacesSection: React.FC = () => {
                             align="center"
                             variant="uppercase"
                         />
+
+                        {formattedDate && (
+                            <motion.div
+                                className="places-section__date-card"
+                                style={{ backgroundImage: `url(${rsvpBg})` }}
+                                initial={{ opacity: 0, scale: 0.92, y: 10 }}
+                                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-10% 0px' }}
+                                transition={{ duration: 0.9, delay: 0.45, ease: FLUID_EASE }}
+                            >
+                                <div className="places-section__date-inner">
+                                    <span className="places-section__date-text">{formattedDate}</span>
+                                </div>
+                            </motion.div>
+                        )}
                     </motion.div>
 
                     <div className="places-section__grid">
                         {placesConfig.locations.map((loc, idx) => {
                             const variant = getCardVariant(idx)
+                            const corners = idx % 2 === 0
+                                ? ['top-left', 'bottom-right']
+                                : ['top-right', 'bottom-left']
+
                             return (
                                 <motion.div
                                     key={idx}
@@ -77,23 +98,34 @@ export const PlacesSection: React.FC = () => {
                                     viewport={{ once: true, margin: '-10% 0px' }}
                                     transition={{ duration: 1.1, delay: 0.35 + idx * 0.22, ease: FLUID_EASE }}
                                 >
-                                    {loc.date && (
-                                        <motion.p
-                                            className="places-item__date"
-                                            initial={{ opacity: 0, scale: 0.85 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true, margin: '-10% 0px' }}
-                                            transition={{ duration: 0.8, delay: 0.5 + idx * 0.22, ease: FLUID_EASE }}
-                                        >
-                                            {formatLocalDate(loc.date)}
-                                        </motion.p>
+                                    {corners.map((corner) => (
+                                        <img
+                                            key={corner}
+                                            src={placesDecoration1}
+                                            alt=""
+                                            aria-hidden="true"
+                                            className={`places-item__decoration places-item__decoration--${corner}`}
+                                        />
+                                    ))}
+
+                                    <img
+                                        src={getPlaceIcon(loc.title)}
+                                        alt={loc.title || 'Ubicación'}
+                                        className="places-item__icon"
+                                    />
+
+                                    {loc.title && (
+                                        <h3 className="places-item__title">{loc.title}</h3>
+                                    )}
+
+
+                                    {loc.venue && (
+                                        <p className="places-item__venue">{loc.venue}</p>
                                     )}
 
                                     {loc.time && (
                                         <p className="places-item__time">{loc.time}</p>
                                     )}
-
-                                    <h3 className="places-item__title">{loc.title}</h3>
 
                                     {loc.location && (
                                         <p className="places-item__address">{loc.location}</p>

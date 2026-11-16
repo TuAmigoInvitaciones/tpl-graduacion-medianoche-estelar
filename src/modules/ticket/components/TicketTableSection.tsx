@@ -1,8 +1,8 @@
 import React from 'react'
+import { motion } from 'framer-motion'
 import { ArmchairIcon } from '@phosphor-icons/react'
 import { useModal } from '@/common/hooks/useModal'
 import { MODAL_NAMES } from '@/store/ui/modal.slice'
-import { Button } from '@/common/components/button/Button'
 import type { Ticket } from '@/common/types'
 
 interface Props {
@@ -21,15 +21,22 @@ export const TicketTableSection: React.FC<Props> = ({ ticket }) => {
             </div>
 
             <div className="ticket__button no-print">
-                <Button
-                    variant="primary"
-                    radius="full"
-                    icon={<ArmchairIcon size={20} weight="thin" />}
-                    onClick={() => onOpenModal(MODAL_NAMES.tables, 'Distribución de Mesas')}
+                <motion.button
+                    type="button"
                     className="ticket__tables-btn"
+                    onClick={() => onOpenModal(MODAL_NAMES.tables, 'Distribución de Mesas')}
+                    animate={{ scale: [1, 1.035, 1] }}
+                    transition={{
+                        duration: 2.2,
+                        repeat: Infinity,
+                        ease: 'easeInOut',
+                    }}
+                    whileTap={{ scale: 0.96 }}
                 >
-                    Ver Mesas
-                </Button>
+                    <span className="ticket__tables-btn__shimmer" aria-hidden="true" />
+                    <ArmchairIcon size={20} weight="thin" className="ticket__tables-btn__icon" />
+                    <span className="ticket__tables-btn__label">Ver Mesas</span>
+                </motion.button>
             </div>
         </div>
     )
