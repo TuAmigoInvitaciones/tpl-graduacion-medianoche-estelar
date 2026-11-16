@@ -1,4 +1,5 @@
 @use 'sass:color';
+@use 'sass:map';
 
 /* ==========================================================================
    Functions - Dynamic Color Tints & Shades
@@ -18,7 +19,6 @@
    Mixins - Shared Component & Layout Utilities
    ========================================================================== */
 
-/// 1. Gradient Fade Overlay (Top, Bottom, or Double)
 @mixin difuminatedGradient($color: #ffffff,
     $height: 25%,
     $positionY: 0,
@@ -53,7 +53,6 @@
     }
 }
 
-/// 2. Background Image Container Overlay
 @mixin backgroundImage($opacity: 0.1,
     $url: null,
     $size: cover,
@@ -74,7 +73,6 @@
     }
 }
 
-/// Flexbox Alignment Shortcut
 @mixin flexCenter($direction: row, $justify: center, $align: center, $gap: null) {
     display: flex;
     flex-direction: $direction;
@@ -86,7 +84,6 @@
     }
 }
 
-/// Absolute Center Positioning
 @mixin absoluteCenter {
     position: absolute;
     top: 50%;
@@ -94,7 +91,6 @@
     transform: translate(-50%, -50%);
 }
 
-/// Glassmorphism Effect
 @mixin glassmorphism($bgOpacity: 0.15,
     $blur: 10px,
     $borderColor: rgba(255, 255, 255, 0.2),
@@ -105,36 +101,25 @@
     border: 1px solid $borderColor;
 }
 
-/// Responsive Media Query Helper
+$_breakpoints: (
+    'xs': 480px,
+    'sm': 576px,
+    'md': 768px,
+    'lg': 992px,
+    'xl': 1200px,
+);
+
+@function _resolveBreakpoint($breakpoint) {
+    @if map.has-key($_breakpoints, $breakpoint) {
+        @return map.get($_breakpoints, $breakpoint);
+    }
+
+    @return $breakpoint;
+}
+
 @mixin respondTo($breakpoint) {
-    @if $breakpoint == 'sm' or $breakpoint == 576px {
-        @media (max-width: 576px) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint == 'md' or $breakpoint == 768px {
-        @media (max-width: 768px) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint == 'lg' or $breakpoint == 992px {
-        @media (max-width: 992px) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint == 'xl' or $breakpoint == 1200px {
-        @media (max-width: 1200px) {
-            @content;
-        }
-    }
-
-    @else {
-        @media (max-width: $breakpoint) {
-            @content;
-        }
+    @media (max-width: #{_resolveBreakpoint($breakpoint)}) {
+        @content;
     }
 }
 
@@ -144,36 +129,9 @@
     }
 }
 
-/// Responsive Media Query Helper (Mobile-First / min-width)
 @mixin respondToMin($breakpoint) {
-    @if $breakpoint == 'sm' or $breakpoint == 576px {
-        @media (min-width: 576px) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint == 'md' or $breakpoint == 768px {
-        @media (min-width: 768px) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint == 'lg' or $breakpoint == 992px {
-        @media (min-width: 992px) {
-            @content;
-        }
-    }
-
-    @else if $breakpoint == 'xl' or $breakpoint == 1200px {
-        @media (min-width: 1200px) {
-            @content;
-        }
-    }
-
-    @else {
-        @media (min-width: $breakpoint) {
-            @content;
-        }
+    @media (min-width: #{_resolveBreakpoint($breakpoint)}) {
+        @content;
     }
 }
 
@@ -183,9 +141,8 @@
     }
 }
 
-/// Text Truncation (Single or Multi-line)
 @mixin textTruncate($lines: 1) {
-    @if $lines == 1 {
+    @if $lines ==1 {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -199,9 +156,7 @@
     }
 }
 
-/// Núcleo compartido para botones metálicos con bisel, marco interno, destello y halo
-@mixin foilButtonCore(
-    $bg-gradient,
+@mixin foilButtonCore($bg-gradient,
     $border-color,
     $hover-border-color,
     $shadow-color,
@@ -216,28 +171,30 @@
     $text-color,
     $text-emboss,
     $font-sans,
-    $full-width: false
-) {
+    $full-width: false) {
     position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.8rem;
     padding: 1.15rem 2.8rem;
+
     @if $full-width {
         width: 100%;
     }
+
     border: 1px solid $border-color;
     border-radius: 100rem;
     background: $bg-gradient;
     cursor: pointer;
-    box-shadow:
-        0 8px 22px $shadow-color,
-        0 3px 8px $ink-shadow,
-        inset 0 1px 0 $inset-top,
-        inset 0 -2px 4px $inset-bottom;
+    box-shadow: 0 8px 22px $shadow-color,
+    0 3px 8px $ink-shadow,
+    inset 0 1px 0 $inset-top,
+    inset 0 -2px 4px $inset-bottom;
     outline: none;
-    transition: box-shadow 0.3s ease, filter 0.3s ease, border-color 0.3s ease;
+    transition: box-shadow 0.3s ease,
+    filter 0.3s ease,
+    border-color 0.3s ease;
 
     &:hover {
         border-color: $hover-border-color;
@@ -255,7 +212,6 @@
             0 8px 22px $shadow-color;
     }
 
-    // Subtle outer halo ring
     &::before {
         content: '';
         position: absolute;
@@ -267,7 +223,6 @@
         animation: ticketPulseRing 2.4s ease-in-out infinite;
     }
 
-    // Fine inner foil frame
     &::after {
         content: '';
         position: absolute;
@@ -281,14 +236,12 @@
     &__shimmer {
         position: absolute;
         inset: 0;
-        background-image: linear-gradient(
-            115deg,
-            transparent 28%,
-            $shimmer-soft 45%,
-            $shimmer-peak 50%,
-            $shimmer-soft 55%,
-            transparent 72%
-        );
+        background-image: linear-gradient(115deg,
+                transparent 28%,
+                $shimmer-soft 45%,
+                $shimmer-peak 50%,
+                $shimmer-soft 55%,
+                transparent 72%);
         background-size: 220% 100%;
         animation: ticketShimmer 3.2s linear infinite;
         pointer-events: none;
@@ -316,7 +269,6 @@
     }
 }
 
-/// Botón dorado metálico con bisel, marco interno, destello y halo pulsante
 @mixin goldFoilButton($gold, $ink, $font-sans, $full-width: false) {
     $gold-100: tint($gold, 80%);
     $gold-200: tint($gold, 60%);
@@ -327,15 +279,12 @@
     $gold-800: shade($gold, 45%);
     $ink-dark: shade($ink, 60%);
 
-    @include foilButtonCore(
-        $bg-gradient: linear-gradient(
-            135deg,
+    @include foilButtonCore($bg-gradient: linear-gradient(135deg,
             $gold 0%,
             $gold-300 28%,
             $gold-200 48%,
             $gold-400 72%,
-            $gold-600 100%
-        ),
+            $gold-600 100%),
         $border-color: rgba($gold-700, 0.65),
         $hover-border-color: $gold-700,
         $shadow-color: rgba($gold-600, 0.42),
@@ -350,11 +299,9 @@
         $text-color: $ink,
         $text-emboss: rgba($gold-100, 0.45),
         $font-sans: $font-sans,
-        $full-width: $full-width
-    );
+        $full-width: $full-width );
 }
 
-/// Botón azul marino metálico con acentos dorados, bisel, destello y halo pulsante
 @mixin navyFoilButton($navy, $accent, $font-sans, $full-width: false) {
     $navy-light: tint($navy, 18%);
     $navy-mid: tint($navy, 8%);
@@ -364,15 +311,12 @@
     $accent-200: tint($accent, 60%);
     $accent-300: tint($accent, 40%);
 
-    @include foilButtonCore(
-        $bg-gradient: linear-gradient(
-            135deg,
+    @include foilButtonCore($bg-gradient: linear-gradient(135deg,
             $navy 0%,
             $navy-mid 30%,
             $navy-light 48%,
             $navy 72%,
-            $navy-deep 100%
-        ),
+            $navy-deep 100%),
         $border-color: rgba($accent, 0.6),
         $hover-border-color: rgba($accent-200, 0.85),
         $shadow-color: rgba($navy-shadow, 0.34),
@@ -387,11 +331,9 @@
         $text-color: #faf7f2,
         $text-emboss: rgba($navy-shadow, 0.65),
         $font-sans: $font-sans,
-        $full-width: $full-width
-    );
+        $full-width: $full-width );
 }
 
-/// Píldora enmarcada con fondo damasco y doble borde concéntrico
 @mixin damaskPillOuter {
     display: inline-flex;
     justify-content: center;
