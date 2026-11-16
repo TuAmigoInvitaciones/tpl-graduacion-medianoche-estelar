@@ -50,7 +50,7 @@
 }
 
 .details-card {
-    background-color: #ffffff;
+    background-color: #fff;
     box-shadow: 0 12px 38px rgba(vars.$color-primary-900, 0.06);
     border: 1px solid rgba(vars.$color-primary-200, 0.55);
     padding: 3.5rem 2rem;
@@ -60,7 +60,6 @@
     align-items: center;
     text-align: center;
     position: relative;
-    border-radius: 18px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 
     &:first-child {

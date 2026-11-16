@@ -103,6 +103,7 @@
 }
 
 .places-item {
+    background-color: #fff;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -114,7 +115,6 @@
     gap: 1rem;
     padding: 5rem 2rem 8rem;
     box-sizing: border-box;
-    background-color: #ffffff;
     border: 1px solid rgba(vars.$color-primary-200, 0.55);
     box-shadow: 0 1.2rem 3.8rem rgba(vars.$color-primary-900, 0.06);
 

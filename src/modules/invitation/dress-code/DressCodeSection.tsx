@@ -47,7 +47,7 @@ export const DressCodeSection: React.FC = () => {
                     transition={{ duration: 1.1, delay: 0.2, ease: FLUID_EASE }}
                 >
                     <SectionHeader
-                        pretitle="SUGERENCIAS"
+                        pretitle="Etiqueta del evento"
                         title="Código de Vestimenta"
                         align="center"
                         variant="uppercase"

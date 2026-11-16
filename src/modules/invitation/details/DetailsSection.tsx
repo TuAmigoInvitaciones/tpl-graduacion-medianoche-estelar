@@ -6,7 +6,7 @@ import { useToast } from '@/common/hooks/useToast'
 import megafono from '@/assets/images/icons/megafono.webp'
 import tendido from '@/assets/images/icons/tendido-2.webp'
 import sillas from '@/assets/images/icons/sillas.webp'
-import copas from '@/assets/images/icons/copas.webp'
+import copas from '@/assets/images/icons/copas.svg'
 import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]

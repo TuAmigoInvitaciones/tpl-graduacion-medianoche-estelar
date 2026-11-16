@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import { motion, type Variants } from 'framer-motion'
 import confetti from 'canvas-confetti'
+import { useInvitationConfig } from '@/common/hooks'
 import bg from '@/assets/images/backgrounds/rsvp.jpeg'
 import marco from '@/assets/images/icons/marco.webp'
 
@@ -29,6 +30,13 @@ const textLineVariants: Variants = {
 
 export const FarewellSection: React.FC = () => {
     const hasTriggeredRef = useRef(false)
+    const { sections } = useInvitationConfig()
+
+    const farewellConfig = sections.farewell
+    const title = sections.hero?.names || 'CEB 6/1'
+    const subtitle = farewellConfig?.hashtag || sections.hero?.city || ''
+    const message = farewellConfig?.thankYouMessage || 'Gracias por acompañarnos en este momento tan especial y celebrar juntos el gran logro que significa este paso en nuestras vidas.'
+    const eventDate = sections.hero?.date || ''
 
     const triggerConfetti = () => {
         if (hasTriggeredRef.current) return
@@ -58,52 +66,58 @@ export const FarewellSection: React.FC = () => {
 
     return (
         <>
-            <section id="farewell" className="farewell">
-                <div className="farewell__bg" style={{ backgroundImage: `url(${bg})` }} />
+            {farewellConfig?.showFarewell !== false && (
+                <section id="farewell" className="farewell">
+                    <div className="farewell__bg" style={{ backgroundImage: `url(${bg})` }} />
 
-                <div className="farewell__container">
-                    <motion.div
-                        className="farewell__frame-wrapper"
-                        initial={{ opacity: 0, scale: 0.88 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true, margin: '-10% 0px' }}
-                        onViewportEnter={triggerConfetti}
-                        transition={{ duration: 1.4, delay: 0.2, ease: FLUID_EASE }}
-                    >
-                        <img src={marco} alt="Marco Floral" className="farewell__frame-bg" />
-
+                    <div className="farewell__container">
                         <motion.div
-                            className="farewell__frame-content"
-                            variants={frameContentVariants}
-                            initial="hidden"
-                            whileInView="visible"
+                            className="farewell__frame-wrapper"
+                            initial={{ opacity: 0, scale: 0.88 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true, margin: '-10% 0px' }}
+                            onViewportEnter={triggerConfetti}
+                            transition={{ duration: 1.4, delay: 0.2, ease: FLUID_EASE }}
                         >
-                            <motion.h2
-                                className="farewell__title"
-                                initial={{ opacity: 0, scale: 0.82 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
+                            <img src={marco} alt="Marco Floral" className="farewell__frame-bg" />
+
+                            <motion.div
+                                className="farewell__frame-content"
+                                variants={frameContentVariants}
+                                initial="hidden"
+                                whileInView="visible"
                                 viewport={{ once: true, margin: '-10% 0px' }}
-                                transition={{ duration: 1.1, delay: 0.55, ease: FLUID_EASE }}
                             >
-                                CEB 6/1
-                            </motion.h2>
+                                <motion.h2
+                                    className="farewell__title"
+                                    initial={{ opacity: 0, scale: 0.82 }}
+                                    whileInView={{ opacity: 1, scale: 1 }}
+                                    viewport={{ once: true, margin: '-10% 0px' }}
+                                    transition={{ duration: 1.1, delay: 0.55, ease: FLUID_EASE }}
+                                >
+                                    {title}
+                                </motion.h2>
 
-                            <motion.p className="farewell__generation" variants={textLineVariants}>
-                                GENERACIÓN 2023 – 2026
-                            </motion.p>
+                                {subtitle && (
+                                    <motion.p className="farewell__generation" variants={textLineVariants}>
+                                        {subtitle}
+                                    </motion.p>
+                                )}
 
-                            <motion.p className="farewell__message" variants={textLineVariants}>
-                                ¡Gracias por acompañarnos y ser parte fundamental de este gran logro! Los esperamos con mucha emoción para celebrar juntos una noche inolvidable.
-                            </motion.p>
+                                <motion.p className="farewell__message" variants={textLineVariants}>
+                                    {message}
+                                </motion.p>
 
-                            <motion.span className="farewell__date" variants={textLineVariants}>
-                                7 DE AGOSTO DE 2026
-                            </motion.span>
+                                {eventDate && (
+                                    <motion.span className="farewell__date" variants={textLineVariants}>
+                                        {eventDate}
+                                    </motion.span>
+                                )}
+                            </motion.div>
                         </motion.div>
-                    </motion.div>
-                </div>
-            </section>
+                    </div>
+                </section>
+            )}
 
             <footer className="invitation-footer">
                 <p className="invitation-footer__text">

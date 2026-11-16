@@ -2,12 +2,12 @@
 @use '../../../common/styles/mixins' as mix;
 
 .graduates {
-    padding: 6rem 2rem;
+    padding: 6rem 2rem 2rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: vars.$color-secondary-100;
+    background-color: vars.$color-4-200;
 
     &__container {
         width: 100%;
@@ -29,7 +29,7 @@
     }
 
     &__content {
-        background: radial-gradient(circle, #ffffff 60%, #fbf9f4 100%);
+        background-color: #fff;
         border: 1px solid vars.$color-secondary;
         padding: 3.5rem 3rem 4.5rem;
         display: flex;

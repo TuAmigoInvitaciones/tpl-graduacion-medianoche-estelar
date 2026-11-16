@@ -28,8 +28,8 @@ export const Invitation: React.FC = () => {
             <PlacesSection />
             <GraduatesSection />
             <DressCodeSection />
-            <ItinerarySection />
             <GuestPhotosSection />
+            <ItinerarySection />
             <DetailsSection />
             <FarewellSection />
         </main>

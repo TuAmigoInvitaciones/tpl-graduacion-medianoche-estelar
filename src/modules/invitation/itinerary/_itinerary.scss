@@ -2,7 +2,7 @@
 @use '../../../common/styles/mixins' as mix;
 
 .itinerary-section {
-    padding: 4rem 1.5rem 6rem;
+    padding: 8rem 1.5rem 0;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
 .itinerary-card-main {
     position: relative;
     width: 100%;
-    background-color: #faf7f2;
+    background-color: #fff;
     border: 1px solid rgba(vars.$color-primary-900, 0.15);
     box-shadow: 0 16px 45px rgba(vars.$color-primary-900, 0.08);
     padding: 4.5rem 2rem 5rem;
