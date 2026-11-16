@@ -11,7 +11,9 @@ interface Props {
 
 export const TicketTableSection: React.FC<Props> = ({ ticket }) => {
     const { onOpenModal } = useModal()
-    const tableInfo = ticket?.table || 'Por Asignar'
+    const rawTable = String(ticket?.table ?? '').trim()
+    const hasAssignedTable = Boolean(rawTable) && !/^(por asignar|no asignad[oa])$/i.test(rawTable)
+    const tableInfo = hasAssignedTable ? rawTable : 'Por Asignar'
 
     return (
         <div className="ticket__table-section">
@@ -20,24 +22,26 @@ export const TicketTableSection: React.FC<Props> = ({ ticket }) => {
                 <span className="ticket__table-value">{tableInfo}</span>
             </div>
 
-            <div className="ticket__button no-print">
-                <motion.button
-                    type="button"
-                    className="ticket__tables-btn"
-                    onClick={() => onOpenModal(MODAL_NAMES.tables, 'Distribución de Mesas')}
-                    animate={{ scale: [1, 1.035, 1] }}
-                    transition={{
-                        duration: 2.2,
-                        repeat: Infinity,
-                        ease: 'easeInOut',
-                    }}
-                    whileTap={{ scale: 0.96 }}
-                >
-                    <span className="ticket__tables-btn__shimmer" aria-hidden="true" />
-                    <ArmchairIcon size={20} weight="thin" className="ticket__tables-btn__icon" />
-                    <span className="ticket__tables-btn__label">Ver Mesas</span>
-                </motion.button>
-            </div>
+            {hasAssignedTable && (
+                <div className="ticket__button">
+                    <motion.button
+                        type="button"
+                        className="ticket__tables-btn"
+                        onClick={() => onOpenModal(MODAL_NAMES.tables, 'Distribución de Mesas')}
+                        animate={{ scale: [1, 1.035, 1] }}
+                        transition={{
+                            duration: 2.2,
+                            repeat: Infinity,
+                            ease: 'easeInOut',
+                        }}
+                        whileTap={{ scale: 0.96 }}
+                    >
+                        <span className="ticket__tables-btn__shimmer" aria-hidden="true" />
+                        <ArmchairIcon size={20} weight="thin" className="ticket__tables-btn__icon" />
+                        <span className="ticket__tables-btn__label">Ver Mesas</span>
+                    </motion.button>
+                </div>
+            )}
         </div>
     )
 }

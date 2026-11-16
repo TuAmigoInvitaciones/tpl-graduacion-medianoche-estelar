@@ -1,12 +1,7 @@
 import React from 'react'
-import { TicketIcon, DownloadSimpleIcon } from '@phosphor-icons/react'
-import { Button } from '@/common/components/button/Button'
+import { TicketIcon, QrCodeIcon } from '@phosphor-icons/react'
 
 export const TicketNotice: React.FC = () => {
-    const handleDownloadPdf = () => {
-        window.print()
-    }
-
     return (
         <div className="ticket__notice-container">
             <div className="ticket__notice">
@@ -16,15 +11,11 @@ export const TicketNotice: React.FC = () => {
                 </p>
             </div>
 
-            <div className="ticket__download-box no-print">
-                <Button
-                    variant="outline"
-                    onClick={handleDownloadPdf}
-                    icon={<DownloadSimpleIcon size={20} weight="bold" />}
-                    className="ticket__download-btn"
-                >
-                    Descargar Boleto PDF
-                </Button>
+            <div className="ticket__notice">
+                <QrCodeIcon size={22} weight="bold" className="ticket__notice-icon" />
+                <p className="ticket__notice-text">
+                    La cantidad de boletos irá disminuyendo conforme se vaya escaneando en la recepción hasta llegar a 0.
+                </p>
             </div>
         </div>
     )
