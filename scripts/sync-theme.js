@@ -43,9 +43,9 @@ try {
     const musicVariant = theme.music?.variant || theme.musicVariant || 'floating'
     const buttonVariant = theme.buttonVariant || 'primary'
 
-    // Título dinámico desde los nombres del Hero o del Menú
+    // Título dinámico: prioriza metaTitle de invitation.config.json sobre hero.names
     const coupleNames = parsed.sections?.hero?.names || theme.menu?.title || 'Invitación Especial'
-    const titleText = `${coupleNames} | Invitación Especial`
+    const titleText = parsed.metaTitle || `${coupleNames} | Invitación Especial`
 
     const scssContent = `// ==========================================================================
 // AUTO-GENERATED ARCHIVE - DO NOT EDIT DIRECTLY

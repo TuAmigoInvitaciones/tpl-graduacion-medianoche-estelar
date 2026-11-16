@@ -473,10 +473,11 @@
 
     &__table-value {
         font-family: vars.$font-serif;
-        font-size: 2.6rem;
+        font-size: 1.2rem;
         font-weight: 700;
         color: vars.$color-primary-900;
         text-transform: uppercase;
+        text-align: center;
         letter-spacing: 0.04em;
 
         @include mix.respondToMin('xs') {
