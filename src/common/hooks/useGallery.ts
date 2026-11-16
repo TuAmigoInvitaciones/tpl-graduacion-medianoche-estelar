@@ -12,6 +12,20 @@ export interface GalleryCardItem {
     tone: GalleryCardTone
 }
 
+export interface GalleryInputItem {
+    id?: string
+    label?: string
+    image: string
+    tone?: GalleryCardTone
+}
+
+export type GalleryPhotoInput = string | GalleryInputItem
+
+export interface UseGalleryOptions {
+    images?: GalleryPhotoInput[]
+    title?: string
+}
+
 export interface GalleryCardPose {
     x: number
     y: number
@@ -30,17 +44,31 @@ const DEFAULT_GALLERY_CARDS: GalleryCardItem[] = [
 
 const TONES: GalleryCardTone[] = ['navy', 'gold', 'rose', 'sage']
 
-const buildInitialCards = (images?: string[]): GalleryCardItem[] => {
+const buildInitialCards = (images?: GalleryPhotoInput[]): GalleryCardItem[] => {
     if (!images || images.length === 0) {
         return DEFAULT_GALLERY_CARDS
     }
 
-    return images.map((image, idx) => ({
-        id: `gallery-${idx}`,
-        label: `Foto ${String(idx + 1).padStart(2, '0')}`,
-        image,
-        tone: TONES[idx % TONES.length],
-    }))
+    return images.map((item, idx) => {
+        const defaultLabel = `Foto ${String(idx + 1).padStart(2, '0')}`
+        const defaultTone = TONES[idx % TONES.length]
+
+        if (typeof item === 'string') {
+            return {
+                id: `gallery-${idx}`,
+                label: defaultLabel,
+                image: item,
+                tone: defaultTone,
+            }
+        }
+
+        return {
+            id: item.id ?? `gallery-${idx}`,
+            label: item.label ?? defaultLabel,
+            image: item.image,
+            tone: item.tone ?? defaultTone,
+        }
+    })
 }
 
 const computeCardPose = (
@@ -82,14 +110,15 @@ const computeCardPose = (
     }
 }
 
-export const useGallery = () => {
+export const useGallery = (input?: GalleryPhotoInput[] | UseGalleryOptions) => {
     const { sections } = useInvitationConfig()
     const galleryConfig = sections.gallery
 
-    const baseCards = useMemo(
-        () => buildInitialCards(galleryConfig?.images),
-        [galleryConfig?.images]
-    )
+    const options: UseGalleryOptions = Array.isArray(input) ? { images: input } : (input ?? {})
+    const externalImages = options.images && options.images.length > 0 ? options.images : undefined
+    const resolvedImages = externalImages ?? galleryConfig?.images
+
+    const baseCards = useMemo(() => buildInitialCards(resolvedImages), [resolvedImages])
     const [offset, setOffset] = useState(0)
     const [leavingCard, setLeavingCard] = useState<{ id: string; direction: number } | null>(null)
     const timerRef = useRef<number | null>(null)
@@ -167,7 +196,7 @@ export const useGallery = () => {
     }
 
     return {
-        title: galleryConfig?.title || 'Nuestra Galería',
+        title: options.title || galleryConfig?.title || 'Nuestra Galería',
         cards,
         isAnimating: leavingCard !== null,
         getCardPose,

@@ -5,11 +5,17 @@ import { useGallery } from '@/common/hooks'
 import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
 import bowlFlowers from '@/assets/images/icons/bowl-flowers.svg'
+import photo1 from '@/assets/images/photos/1.jpg'
+import photo2 from '@/assets/images/photos/2.jpg'
+import photo3 from '@/assets/images/photos/3.jpg'
+import photo4 from '@/assets/images/photos/4.jpg'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const CARD_TRANSITION = { type: 'spring' as const, stiffness: 260, damping: 24 }
+const GALLERY_PHOTOS = [photo1, photo2, photo3, photo4]
 
 export const GallerySection: React.FC = () => {
+
     const {
         title,
         cards,
@@ -18,7 +24,7 @@ export const GallerySection: React.FC = () => {
         handleCardClick,
         handleDragEnd,
         handleKeyDown,
-    } = useGallery()
+    } = useGallery(GALLERY_PHOTOS)
 
     return (
         <section id="gallery" className="gallery-section">
