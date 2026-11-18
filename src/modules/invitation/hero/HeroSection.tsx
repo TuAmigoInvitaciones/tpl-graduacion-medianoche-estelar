@@ -9,8 +9,10 @@ export const HeroSection: React.FC = () => {
     const videoRef = useRef<HTMLVideoElement>(null)
     const { sections } = useInvitationConfig()
 
-    const names = sections.hero?.names ?? 'CEB 6/1'
-    const date = sections.hero?.date ?? '7 DE AGOSTO DE 2026'
+    const names = sections.hero?.names ?? 'UPA'
+    const career = sections.hero?.career ?? 'Ing. Sistemas Computacionales'
+    const generation = sections.hero?.generation ?? 'Generación 2022/2026'
+    const date = sections.hero?.date ?? '19 DE DICIEMBRE DE 2026'
 
     useEffect(() => {
         if (videoRef.current) {
@@ -51,7 +53,16 @@ export const HeroSection: React.FC = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1.5, delay: 0.3, ease: FLUID_EASE }}
                 >
-                    Generación 2023 - 2026
+                    {career as string}
+                </motion.p>
+
+                <motion.p
+                    className="hero__generation"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1.5, delay: 0.3, ease: FLUID_EASE }}
+                >
+                    {generation as string}
                 </motion.p>
 
                 <motion.p

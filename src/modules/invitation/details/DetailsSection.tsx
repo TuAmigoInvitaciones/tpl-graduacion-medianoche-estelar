@@ -9,6 +9,7 @@ import sillas from '@/assets/images/icons/sillas.webp'
 import copas from '@/assets/images/icons/copas.svg'
 import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
 import rsvpBg2 from '@/assets/images/backgrounds/rsvp-2.jpg'
+import { useInvitationConfig } from '@/common/hooks'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
@@ -16,8 +17,9 @@ const cardDirections = [{ x: -40, y: 0 }, { x: 40, y: 0 }, { x: 0, y: 40 }]
 
 export const DetailsSection: React.FC = () => {
     const { showSuccess } = useToast()
+    const { sections } = useInvitationConfig()
 
-    const hashtag = '#CEB61Graduacion'
+    const hashtag = sections.details?.hashtag ?? 'GradUPAISC26'
 
     const handleCopyHashtag = () => {
         navigator.clipboard.writeText(hashtag)

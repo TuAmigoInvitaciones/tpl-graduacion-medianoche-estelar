@@ -3,26 +3,18 @@ import { motion, type Variants } from 'framer-motion'
 
 import bg from '@/assets/images/backgrounds/rsvp.jpeg'
 import { ArrowUpRightIcon } from '@phosphor-icons/react'
-import logo from '@/assets/images/icons/logo.webp'
+import logo from '@/assets/images/icons/logo.svg'
 import { useDrawer } from '@/common/hooks'
-import { DRAWER_NAMES } from '@/store/ui/drawer.slice'
+import { DRAWER_NAMES, type DrawerName } from '@/store/ui/drawer.slice'
 
 const FLUID_EASE = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
-const CAREERS = [
+const CAREERS: ReadonlyArray<{ drawer: DrawerName; label: string }> = [
     {
-        drawer: DRAWER_NAMES.tics,
-        label: 'Tecnologías de la Información y Comunicación',
+        drawer: DRAWER_NAMES.isc,
+        label: 'Ingeniería en Sistemas Computacionales',
     },
-    {
-        drawer: DRAWER_NAMES.administracion,
-        label: 'Administración',
-    },
-    {
-        drawer: DRAWER_NAMES.intervencion,
-        label: 'Intervención en la Educación Obligatoria',
-    },
-] as const
+]
 
 const careerContainerVariants: Variants = {
     hidden: {},
@@ -45,6 +37,7 @@ const careerItemVariants: Variants = {
 
 export const GraduatesSection: React.FC = () => {
     const { onOpenDrawer } = useDrawer()
+    const isSingleCareer = CAREERS.length === 1
 
     return (
         <>
@@ -102,6 +95,22 @@ export const GraduatesSection: React.FC = () => {
                                     <p className="graduates__col-value">2023 - 2026</p>
                                 </motion.div>
                             </div>
+
+                            {isSingleCareer && (
+                                <motion.div
+                                    className="graduates__school-message-wrapper"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-10% 0px' }}
+                                    transition={{ duration: 1.0, delay: 0.52, ease: FLUID_EASE }}
+                                >
+                                    <div className="graduates__career-divider graduates__school-divider" />
+                                    <p className="graduates__school-message">
+                                        Hoy celebramos con profundo orgullo la culminación de años de esfuerzo, constancia y pasión por el conocimiento. Que cada meta alcanzada sea el impulso para transformar el mundo con ética, talento y excelencia.
+                                    </p>
+                                    <div className="graduates__career-divider graduates__school-divider" />
+                                </motion.div>
+                            )}
 
                             <motion.div
                                 className="graduates__careers-list"

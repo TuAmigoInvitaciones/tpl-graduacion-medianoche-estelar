@@ -1,5 +1,5 @@
 {
-  "metaTitle": "Medianoche Estelar | Invitación Especial",
+  "metaTitle": "UPA ISC | Graduación 2026",
   "templateName": "graduacion-medianoche-estelar",
   "eventType": "graduacion",
   "packageTier": "oro",
@@ -18,7 +18,7 @@
     "menu": {
       "showMenu": true,
       "variant": "bar",
-      "title": "CEB 6/1",
+      "title": "UPA Sistemas Computacionales",
       "buttonVariant": "icon"
     },
     "music": {
@@ -41,10 +41,12 @@
     },
     "hero": {
       "showHero": true,
-      "names": "CEB 6/1",
-      "generation": "GENERACIÓN 2023-2026",
+      "names": "UPA",
+      "school": "Universidad Tecnológica de Aguascalientes",
+      "career": "Ing. Sistemas Computacionales",
+      "generation": "Generación 2022/2026",
       "subtitle": "Nos complace invitarte a celebrar la culminación de una etapa",
-      "date": "7 DE ABRIL DE 2027",
+      "date": "19 DE DICIEMBRE DE 2026",
       "city": "Aguascalientes, México"
     },
     "message": {
@@ -53,7 +55,7 @@
     },
     "countdown": {
       "showCountdown": true,
-      "targetDate": "2027-04-07T19:00:00"
+      "targetDate": "2026-12-19T19:00:00"
     },
     "family": {
       "showFamily": false,
@@ -66,19 +68,19 @@
       "locations": [
         {
           "title": "Ceremonia Religiosa",
-          "venue": "Santuario de Nuestra Sra. de Guadalupe",
-          "location": "C. Guadalupe 213, Barrio de Guadalupe, 20059 Aguascalientes, Ags.",
-          "time": "19:00 HRS",
-          "date": "2027-04-07",
-          "url": "https://maps.app.goo.gl/D2UKsaMMJWTN5UcE9"
+          "venue": "Parroquia de Nuestra Señora de La Anunciación",
+          "location": "Calle, Dr. G. Ramírez Valdez 102, 1a Sección, 20235 Aguascalientes, Ags.",
+          "time": "18:00 HRS",
+          "date": "2026-12-19",
+          "url": "https://maps.app.goo.gl/SdQqKupGT9YWGopAA"
         },
         {
           "title": "Recepción & Fiesta",
-          "venue": "Salón Hopaliz",
-          "location": "Blvd. San Marcos #109 Capital City, 20207 Aguascalientes, Ags.",
-          "time": "21:00 HRS",
-          "date": "2027-04-07",
-          "url": "https://maps.app.goo.gl/Ej4U4gfopJPWMNuw5"
+          "venue": "Salón Terraza Jardín El Herradero",
+          "location": "20326 Aguascalientes, Ags.",
+          "time": "20:00 HRS",
+          "date": "2026-12-19",
+          "url": "https://maps.app.goo.gl/fFBTcLyLAQChQ2aSA"
         }
       ]
     },
@@ -141,7 +143,7 @@
       "noKidsMessage": "Aunque amamos a los pequeños, la recepción es solo para adultos.",
       "punctuality": true,
       "punctualityMessage": "Te pedimos ser puntual para no perderte ningún momento especial de la celebración.",
-      "hashtag": "#CEB61"
+      "hashtag": "#GradUPAISC2026"
     },
     "presents": {
       "showPresents": false,
@@ -175,11 +177,11 @@
       "showGuestPhotos": true,
       "title": "Fotos de los Invitados",
       "subtitle": "Comparte tus recuerdos y momentos de la fiesta con nosotros",
-      "albumUrl": "https://photos.app.goo.gl/DP9TzhPzm8cGaDzXA"
+      "albumUrl": "https://photos.app.goo.gl/eGjePDPChmy7Ta9YA"
     },
     "farewell": {
       "showFarewell": true,
-      "hashtag": "#CEB61",
+      "hashtag": "#GradUPAISC2026",
       "thankYouMessage": "Gracias por acompañarnos en este momento tan especial y celebrar juntos el gran logro que significa este paso en nuestras vidas."
     },
     "ticket": {

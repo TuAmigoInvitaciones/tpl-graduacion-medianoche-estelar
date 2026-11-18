@@ -162,6 +162,8 @@ export interface SectionsConfig {
     hero?: SectionItemConfig & {
         showHero?: boolean
         names?: string
+        career?: string
+        generation?: string
         subtitle?: string
         date?: string
         city?: string

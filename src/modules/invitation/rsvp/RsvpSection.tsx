@@ -16,6 +16,8 @@ export const RsvpSection: React.FC = () => {
     const canViewTicket = Boolean(config.hasTicketingSystem && ticket)
     const guestName = ticket?.name || 'Invitado por asignar'
     const eventDate = sections.hero?.date || 'Fecha por asignar'
+    const schoolName = sections.hero?.names || 'UPA'
+    const generation = sections.hero?.generation || 'Generación 2022/2026'
 
     return (
         <section id="rsvp" className="rsvp">
@@ -41,6 +43,16 @@ export const RsvpSection: React.FC = () => {
                     >
                         RSVP
                     </motion.h3>
+
+                    <motion.p
+                        className="rsvp__school-tag"
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true, margin: '-10% 0px' }}
+                        transition={{ duration: 0.9, delay: 0.45, ease: FLUID_EASE }}
+                    >
+                        {schoolName} · {generation}
+                    </motion.p>
 
                     <motion.p
                         className="rsvp__date-tag"

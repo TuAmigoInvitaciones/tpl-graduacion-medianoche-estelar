@@ -114,20 +114,16 @@ export const DressCodeSection: React.FC = () => {
                             viewport={{ once: true, margin: '-10% 0px' }}
                         >
                             <motion.div className="dress-code-swatch" variants={swatchVariants}>
-                                <span className="dress-code-swatch__circle dress-code-swatch__circle--sage" />
-                                <span className="dress-code-swatch__label">SAGE GREEN</span>
+                                <span className="dress-code-swatch__circle dress-code-swatch__circle--sage" style={{ backgroundColor: "#829B8E" }} />
                             </motion.div>
                             <motion.div className="dress-code-swatch" variants={swatchVariants}>
-                                <span className="dress-code-swatch__circle dress-code-swatch__circle--beige" />
-                                <span className="dress-code-swatch__label">BEIGE</span>
+                                <span className="dress-code-swatch__circle dress-code-swatch__circle--beige" style={{ backgroundColor: "#CB9D6A" }} />
                             </motion.div>
                             <motion.div className="dress-code-swatch" variants={swatchVariants}>
                                 <span className="dress-code-swatch__circle dress-code-swatch__circle--blue" />
-                                <span className="dress-code-swatch__label">BABY BLUE</span>
                             </motion.div>
                             <motion.div className="dress-code-swatch" variants={swatchVariants}>
                                 <span className="dress-code-swatch__circle dress-code-swatch__circle--rose" />
-                                <span className="dress-code-swatch__label">DUSTY ROSE</span>
                             </motion.div>
                         </motion.div>
                     </div>

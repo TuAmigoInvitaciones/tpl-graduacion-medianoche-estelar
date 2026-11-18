@@ -16,7 +16,7 @@ import { useInvitationConfig, useMenu, useNavigation, useTicket } from '@/common
 import { Button } from '@/common/components/button/Button'
 import type { MenuSidebarProps } from '@/common/types'
 import { APP_ROUTES } from '@/router/routes'
-import logo from '@/assets/images/icons/logo.webp'
+import logo from '@/assets/images/icons/logo.svg'
 
 interface SectionItem {
     label: string

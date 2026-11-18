@@ -129,7 +129,7 @@
     }
 
     &__logo {
-        width: 40%;
+        width: 75%;
         height: auto;
         display: block;
     }
@@ -189,5 +189,27 @@
     &__button {
         @include mix.navyFoilButton(vars.$color-primary, vars.$color-4, vars.$font-sans);
         margin-top: 1.2rem;
+    }
+
+    &__school-message-wrapper {
+        width: 100%;
+        max-width: 440px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__school-divider {
+        margin: 0 auto;
+    }
+
+    &__school-message {
+        font-family: vars.$font-serif;
+        font-size: clamp(1.05rem, 2.8vw, 1.2rem);
+        line-height: 1.75;
+        color: vars.$color-text-600;
+        font-style: italic;
+        margin: 1.8rem 0;
+        max-width: 92%;
     }
 }

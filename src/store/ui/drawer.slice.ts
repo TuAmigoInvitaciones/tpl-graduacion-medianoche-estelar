@@ -2,9 +2,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 export const DRAWER_NAMES = {
     none: 'none',
-    tics: 'tics',
-    administracion: 'administracion',
-    intervencion: 'intervencion',
+    isc: 'isc',
 } as const;
 
 export type DrawerName = typeof DRAWER_NAMES[keyof typeof DRAWER_NAMES];

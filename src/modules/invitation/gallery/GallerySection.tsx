@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { ImageIcon } from '@phosphor-icons/react'
-import { useGallery } from '@/common/hooks'
+import { useGallery, useInvitationConfig } from '@/common/hooks'
 import { SectionHeader } from '@/common/components/section-header/SectionHeader'
 import rsvpBg from '@/assets/images/backgrounds/rsvp.jpeg'
 import bowlFlowers from '@/assets/images/icons/bowl-flowers.svg'
@@ -15,6 +15,9 @@ const CARD_TRANSITION = { type: 'spring' as const, stiffness: 260, damping: 24 }
 const GALLERY_PHOTOS = [photo1, photo2, photo3, photo4]
 
 export const GallerySection: React.FC = () => {
+
+    const { sections } = useInvitationConfig()
+    const generation = (sections.hero?.generation ?? 'Generación 2023 - 2026') as string
 
     const {
         title,
@@ -113,7 +116,7 @@ export const GallerySection: React.FC = () => {
                             <p className="gallery-section__quote-text">
                                 &ldquo;Cada esfuerzo compartido hoy se convierte en el recuerdo que nos acompañará para siempre.&rdquo;
                             </p>
-                            <span className="gallery-section__quote-author">&mdash; Generación 2023 - 2026</span>
+                            <span className="gallery-section__quote-author">&mdash; {generation}</span>
                         </div>
                     </motion.div>
 

@@ -104,6 +104,17 @@
         margin: 0 0 0.2rem;
     }
 
+    &__school-tag {
+        font-family: vars.$font-serif;
+        font-size: clamp(1.05rem, 2.5vw, 1.2rem);
+        font-weight: 500;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: vars.$color-primary;
+        margin: 0;
+        max-width: 85%;
+    }
+
     &__date-tag {
         font-family: vars.$font-serif;
         font-size: clamp(1.15rem, 2.8vw, 1.3rem);

@@ -5,7 +5,7 @@ import { Button } from '@/common/components/button/Button'
 import { useMenu } from '@/common/hooks'
 import type { MenuProps } from '@/common/types'
 import { MenuSidebar } from './MenuSidebar'
-import logo from '@/assets/images/icons/logo.webp'
+import logo from '@/assets/images/icons/logo.svg'
 
 export const Menu: React.FC<MenuProps> = (props) => {
     const {

@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useInvitationConfig, useMusicPlayer, useNavigation } from '@/common/hooks'
 
 import selloIcon from '@/assets/images/icons/sello.webp'
-import logoIcon from '@/assets/images/icons/logo.webp'
+import logoIcon from '@/assets/images/icons/logo.svg'
 
 export const EnvelopeOpenClosed: React.FC = () => {
     const timeoutRef = useRef<number | null>(null)
